@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="./css/dashboard.css">
+<link rel="stylesheet" href="./css/credit_user.css">
+</head>
+<body>
+
+  <div class="sidebar">
+      <a href="#home">
+        <div class="profile-img">
+          <img src="./image/user.png" alt="">
+        </div>
+        <p class="profile-name">Julius Ngwu</p> 
+      </a>
+      <a href="credit_user.html">Credit Account</a>
+      <a class="active" href="debit_user.html">Debit Account</a>
+      <a href="staff_edit_user.html">View Account</a>
+      <a class="active" href="specific_record.html">User Record</a>
+
+      <a href="index.html">Log Out</a>
+    
+  </div>
+  
+  <div class="content">
+    <div class="dashboard-header">
+      <h2>Staff Dashboard</h2>
+    </div>
+    <div class="dasboard-body">
+        <div class="header-bg">
+            <img src="./image/bank2.jpg" alt="">
+        </div>
+        <div class="details-container">
+            <div class="credit-form">
+                <form>
+                  <div class="input"> 
+                    <select name="" type="text" class="form-control" >
+                      <option value = "">Select type</option>
+                      <option value = "">Current</option><br />
+                      <option value = "">Savings</option><br />
+                    </select>
+                  </div>
+                  <div class="input"> 
+                      <input type="text" placeholder="Enter account number">
+                  </div>
+                  <div class="input"> 
+                      <input type="text" placeholder="Amount">
+                  </div>
+                    <p class="sign-up"> 
+                      <input type="button" value="Withdraw" class="btn">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+<footer>
+    <p>My Banka, Copyright &copy; 2019</p>
+</footer> 
+</body>
+</html>
