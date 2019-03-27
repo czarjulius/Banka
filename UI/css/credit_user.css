@@ -1,0 +1,64 @@
+input[type="text"],input[type="password"],input[type="email"],select[type="text"] {
+  background:transparent;
+  padding:5px;
+  border: 1px solid rgb(3, 26, 54);
+  border-radius: 5px;
+  color:rgb(3, 26, 54);
+  font-size:1em;
+  height:38px;
+  outline:none;
+  width:30%;
+  cursor: text;
+  margin-top: 8px;
+}
+
+input[type="text"]:hover,input[type="password"]:hover,input[type="email"]:hover {
+  border: 1px solid rgb(3, 26, 54);
+  cursor:text;
+  transition:0.5;
+}
+
+select[type="text"] {
+  cursor: pointer;
+}
+
+.input{
+  padding-top: 20px;
+}
+.btn {
+  background: rgb(3, 26, 54);
+  width:10%;
+  padding: 11px;
+  border: 1px solid rgb(3, 26, 54);
+  border-radius: 8px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 20px;
+}
+.credit-form{
+  text-align: center;
+}
+.nextPrevious td a:hover{
+  font-size: 12px;
+  transition: 0.5s;
+}
+
+a:hover {
+  font-size: 12px;
+  transition: 0.5s;
+}
+
+
+@media screen and (max-width: 1024px) {
+  form{
+    flex-wrap: wrap;
+  }
+  input[type="text"],input[type="password"],input[type="email"],select[type="text"] {
+    width:70%;
+    margin-top: 15px;
+
+  }
+  .btn {
+    width:30%;
+  }
+}

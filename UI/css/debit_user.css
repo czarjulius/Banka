@@ -1,0 +1,57 @@
+input[type="text"],input[type="password"],input[type="email"],select[type="text"] {
+  background:transparent;
+  padding:5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color:rgb(245, 237, 237);
+  font-size:1em;
+  height:32px;
+  outline:none;
+  width:30%;
+  cursor: text;
+  margin-top: 8px;
+
+}
+select[type="text"] {
+  cursor: pointer;
+}
+input[type="text"]:hover,input[type="password"]:hover,input[type="email"]:hover {
+  border: 1px solid #4484CE;
+  cursor:text;
+  transition:0.5;
+}
+
+.btn {
+  background: #035AB7;
+  width:10%;
+  padding: 12px;
+  border: 1px solid #035AB7;
+  border-radius: 8px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 20px;
+}
+.nextPrevious td a:hover{
+  font-size: 12px;
+  transition: 0.5s;
+}
+
+a:hover {
+  font-size: 12px;
+  transition: 0.5s;
+  }
+
+  @media screen and (max-width: 1024px) {
+    form{
+      flex-wrap: wrap;
+    }
+    input[type="text"],input[type="password"],input[type="email"],select[type="text"] {
+      width:70%;
+      margin-top: 15px;
+  
+    }
+    .btn {
+      width:30%;
+    }
+  }
+  
