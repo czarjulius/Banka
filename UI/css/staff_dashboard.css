@@ -1,0 +1,134 @@
+a:hover {
+  font-size: 12px;
+  transition: 0.5s;
+  }
+
+table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+  border: 0px solid #ddd;
+}
+
+th, td {
+  text-align: center;
+  padding: 15px;
+}
+
+.details-container {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+.transactions {
+  overflow-x:auto;
+  margin: auto;
+}
+
+.debit-cash {
+  color: rgb(247, 9, 9);
+}
+
+.nextPrevious td a{
+  padding: 10px;
+  font-size: 14px;
+  color: rgb(3, 26, 54);
+}
+
+.nextPrevious td a:hover{
+  font-size: 10px;
+  transition: 0.5s;
+}
+
+.fa{
+padding: 10px;
+}
+.fa-trash-o {
+  color: rgb(185, 57, 57);
+}
+
+.fa-pencil-square-o {
+  color: rgb(73, 73, 47);
+}
+
+.fa-eye {
+  color: rgb(3, 26, 54);
+}
+input[type="text"] {
+  padding:5px;
+  border-radius: 5px;
+  font-size:1em;
+  height:35px;
+  outline:none;
+  width:70%;
+  cursor: text;
+}
+
+.btn {
+  background: rgb(3, 26, 54);
+  width:20%;
+  padding: 2px;
+  border: 1px solid #035AB7;
+  border-radius: 8px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table th,
+table td {
+padding: .625em;
+text-align: center;
+}
+
+table th {
+font-size: .85em;
+letter-spacing: .1em;
+text-transform: uppercase;
+}
+@media screen and (max-width: 800px) {
+  table {
+    border: 0;
+  }
+  table caption {
+    font-size: 1.3em;
+  }
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  table tr {
+    display: block;
+    margin-bottom: .625em;
+  }
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  table td:last-child {
+    border-bottom: 0;
+  }
+  .table-footer{
+    margin-bottom: 40px;
+  }
+}
