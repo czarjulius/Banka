@@ -1,0 +1,77 @@
+.head-container {
+  background:url(../image/banking-finance.png);
+  background-position:center;
+  background-size:cover;
+  height: 100vh;
+  display: flex;
+}
+
+.descriptions{
+  margin: auto;
+  color: rgb(189, 184, 184);
+  width: 50%;
+  text-align: center;
+}
+
+.btn{
+  background:#4484CE;
+  border:none;
+  border-radius:8px;
+  color:#fff;
+  font-size:1em;
+  font-weight:bold;
+  outline:none;
+  padding:10px 10px;
+  transition:.5s;
+  width:50%;
+}
+
+.nextPrevious td a:hover{
+  font-size: 12px;
+  transition: 0.5s;
+}
+
+a:hover {
+  font-size: 12px;
+  transition: 0.5s;
+  }
+  
+.getStarted{
+  margin-top: 10px;
+  background-color: rgb(3, 26, 54);
+}
+
+.services {
+  background: #D9D9D9;
+  margin-bottom: 50px;
+}
+
+.services img {
+  width:90px
+}
+
+.box {
+  flex: 1;
+  padding: 20px;
+  text-align:center;
+  flex-basis: 30%;
+}
+
+@media screen and (min-width: 900px) {
+  .service-container{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .descriptions{
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .descriptions{
+    width: 75%;
+  }
+}
