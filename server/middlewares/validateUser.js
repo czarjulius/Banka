@@ -54,14 +54,14 @@ const validateSignup = [
   check('type')
     .not().isEmpty()
     .withMessage('Type is required')
-    .isIn(['staff', 'user', 'STAFF', 'USER'])
+    .isIn(['staff', 'user', 'STAFF', 'USER', 'User', 'Staff'])
     .withMessage('only staff or user types are allowed')
     .trim(),
 
   check('isAdmin')
     .not().isEmpty()
     .withMessage('isAdmin is required')
-    .isIn(['true', 'false', 'TRUE', 'FALSE'])
+    .isIn(['true', 'false', 'TRUE', 'FALSE', 'True', 'False'])
     .withMessage('only true or false are allowed')
     .trim(),
 
