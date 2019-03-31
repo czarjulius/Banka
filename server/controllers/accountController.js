@@ -44,6 +44,25 @@ class AccountController {
       error: 'Account not found',
     });
   }
+
+  static deleteAccount(req, res) {
+    const { accountNumber } = req.params;
+    const currentAccount = accountModel.find(account => account.accountNumber === accountNumber);
+
+    if (!currentAccount) {
+      return res.status(404).json({
+        status: '404',
+        error: 'Account not found',
+      });
+    }
+
+    const index = accountModel.indexOf(currentAccount);
+    accountModel.splice(index, 1);
+    return res.status(203).json({
+      status: '203',
+      message: 'Account successfully deleted',
+    });
+  }
 }
 
 export default AccountController;
