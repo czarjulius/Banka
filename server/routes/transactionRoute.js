@@ -8,5 +8,6 @@ import validateAccountNumber from '../middlewares/validateAccountNumber';
 const router = express.Router();
 
 router.post('/transactions/:accountNumber/debit', auth, validateAccountNumber, validateAmount, role.isStaff, TransactionController.debitUser);
+router.post('/transactions/:accountNumber/credit', auth, validateAccountNumber, validateAmount, role.isStaff, TransactionController.creditUser);
 
 export default router;
