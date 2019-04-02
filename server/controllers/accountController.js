@@ -1,25 +1,32 @@
 import accountModel from '../models/account';
-import userModel from '../models/user';
+
 class AccountController {
   static postAccount(req, res) {
-    const { type } = req.body;
-    const { id } = req.userData;
+    const { type, amount } = req.body;
+    const {
+      id: userId, firstName, lastName, email,
+    } = req.authUser;
     const account = {
       id: accountModel.length + 1,
       accountNumber: Math.random().toString().slice(2, 12),
       createdOn: new Date(),
-      owner: id,
+      owner: userId,
       type,
       status: 'active',
-      balance: parseFloat(0, 10).toFixed(2),
+      balance: parseFloat(amount, 10).toFixed(2),
     };
 
     accountModel.push(account);
     res.status(201).json({
       status: '201',
       data: {
-        ...account,
-        user: userModel.find(user => user.id === id),
+        id: accountModel.length + 1,
+        accountNumber: Math.random().toString().slice(2, 12),
+        firstName,
+        lastName,
+        email,
+        type,
+        openingBalance: parseFloat(amount, 10).toFixed(2),
       },
     });
   }
