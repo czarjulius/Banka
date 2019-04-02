@@ -16,7 +16,6 @@ const auth = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     const user = AuthenticationHelper.getAuthUser(decoded.id);
-    console.log(user);
     req.authUser = user;
     next();
   } catch (error) {

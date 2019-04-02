@@ -7,8 +7,6 @@ const validateAmount = [
     .withMessage('Amount is required')
     .isNumeric()
     .withMessage('Amount must be a number')
-    .matches(/^\S{3,}$/)
-    .withMessage('Account Number cannot contain whitespaces')
     .trim(),
 
   check('transactionType')

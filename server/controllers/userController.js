@@ -25,7 +25,7 @@ class UserController {
     userModel.push(user);
     const token = generateToken(user.id, user.email, user.isAdmin, user.type);
     return res.header('x-access-token', token).status(201).json({
-      status: '201',
+      status: 201,
       data: {
         token,
         id: user.id,
@@ -48,7 +48,7 @@ class UserController {
     if (currentUser) {
       const token = generateToken(currentUser.id, currentUser.email, currentUser.isAdmin, currentUser.type);
       return res.header('x-access-token', token).status(200).json({
-        status: '200',
+        status: 200,
         data: {
           token,
           id: currentUser.id,
@@ -61,8 +61,8 @@ class UserController {
         },
       });
     }
-    return res.status(404).json({
-      status: '404',
+    return res.status(400).json({
+      status: 400,
       error: 'Username or Password is Incorrect',
     });
   }
