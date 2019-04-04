@@ -3,110 +3,103 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./css/dashboard.css">
 <link rel="stylesheet" href="./css/acc_profile.css">
 </head>
-<body>
-
-    <div class="sidebar">
-      <a href="#home">
-        <div class="profile-img">
-          <img src="./image/user.png" alt="">
-        </div>
-        <p class="profile-name">Julius Ngwu</p> 
+<body>  
+  <div class="s-layout__sidebar">
+      <a class="s-sidebar__trigger" href="#0">
+          <i class="fa fa-bars"></i>
       </a>
-      <a href="credit_user.html">Credit Account</a>
-      <a href="debit_user.html">Debit Account</a>
-      <a href="staff_edit_user.html">View Account</a>
-      <a class="active" href="specific_record.html">User Record</a>
-      <a href="index.html">Log Out</a>
+      
+      <nav class="s-sidebar__nav">
+        <ul>
+          <li>
+              <a class="s-sidebar__nav-link" href="staff_edit_user.html">
+                <i class="fa fa-arrow-left"></i><em>Back</em>
+              </a>
+          </li>
+          <li>
+              <a class="s-sidebar__nav-link" href="./login.html">
+                <i class="fa fa-sign-out"></i><em>Log out</em>
+              </a>
+          </li>
+        </ul>
+      </nav>
   </div>
 
 <div class="content">
   <div class="dashboard-header">
-    <h2>Dashboard</h2>
+    <h2>User Dashboard</h2>
   
   </div>
   <div class="dasboard-body">
       <div class="header-bg">
-          <img src="./image/detail_bg.jpg" alt="">
+          <img src="./image/bank12.jpg" alt="">
       </div>
+    
       <div class="details-container">
-        <div class="detail left">
-          <div class="table one">
-            <table>
-              <tr>
-                <th>Account Name</th>
-              </tr>
-              <tr>
-                <td>Julius Ngwu</td>
-              </tr>
-              <tr>
-                 <th>Account Type</th>
-              </tr>
-              <tr>
-                <td>Saving</td>
-              </tr>
-              <tr>
-                <th>Account Balance</th>
-              </tr>
-              <tr>
-                <td>25,000.00</td>
-              </tr>
-              <tr>
-                <th>Residential Address</th>
-               </tr>
-               <tr>
-                <td>No 15 babalola garden off freedom way ikate lekki, lagos</td>
-               </tr>
-               <tr>
-                <th>Phone Number</th>
-               </tr>
-               <tr>
-                <td>09034221122</td>
-               </tr>
-            </table>
-          </div>
-          <div class="table two">
-            <table>
-              <tr>
-                <th>Created On</th>
-              </tr>
-              <tr>
-                <td>02 Feb. 2001</td>
-              </tr>
-              <tr>
-                <th>Next of Kin</th>
-              </tr>
-              <tr>
-                <td>Anya Samuel</td>
-              </tr>
-              <tr>
-                <th>Account Number</th>
-              </tr>
-              <tr>
-                <td>0732457821</td>
-              </tr>
-              <tr>
-                  <th>Account Status</th>
-               </tr>
-               <tr>
-                <td>Active</td>
-               </tr>
-               <tr>
-                <th>Email</th>
-               </tr>
-               <tr>
-                <td>julius@gmail.com</td>
-               </tr>
-            </table>
-          </div>
-          
+        <div class="profile-pic">
+          <img src="./image/user.png" alt="">
         </div>
-        <div class="detail right">   
-          <div class="detail-img">
-              <img src="./image/user.png" alt="">
-            </div>    
+        <div class="personal-detail">
+          <table>
+              <tr>
+                <caption colspan="2">Personal Details</caption>
+              </tr>
+              <tr>
+                <th> Name:</th>
+                <td><i class="fa fa-user"></i> Julius Ngwu</td>
+              </tr>
+              <tr>
+                <th>Phone Number:</th>
+                <td><i class="fa fa-phone"></i> 08058922347</td>
+              </tr>
+              <tr>
+                <th>Address:</th>
+                <td><i class="fa fa-map-marker"></i> No.2B Babalola Garden off-freedomway ikate Lekki</td>
+              </tr>
+              <tr>
+                <th>Date of Birth:</th>
+                <td><i class="fa fa-calendar-o"></i> 03-03-2003</td>
+              </tr>
+              <tr>
+                <th>Email:</th>
+                <td><i class="fa fa-envelope"></i> juliusczar.jc@gmail.com</td>
+              </tr>               
+              <tr>
+                <th>Next of kin:</th>
+                <td><i class="fa fa-child"></i> Micheal Ngwu</td>
+              </tr>
+          </table>
+        </div>
+        <div class="account-detail">
+          <table>
+              <tr>
+                <caption colspan="2">Account Details</caption>
+              </tr>
+              <tr>
+                <th>Acc. Number:</th>
+                <td><i class="fa fa-none"></i>3056432121</td>
+              </tr>
+              <tr>
+                <th> Type:</th>
+                <td><i class="fa fa-none"></i>Savings</td>
+              </tr>
+              <tr>
+                <th>Status:</th>
+                <td><i class="fa fa-check"></i> Active</td>
+              </tr>
+              <tr>
+                <th>Date Created:</th>
+                <td><i class="fa fa-calendar-o"></i> 03-03-2013</td>
+              </tr>
+              <tr>
+                <th>Balance:</th>
+                <td><i class="fa fa-money"></i> 105,000</td>
+              </tr>
+          </table>
         </div>
       </div>
   </div>
