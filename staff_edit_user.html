@@ -8,126 +8,147 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
-<div class="sidebar">
-  <a href="#home">
-    <div class="profile-img">
-      <img src="./image/user.png" alt="">
-      </div>
-    <p class="profile-name">Julius Ngwu</p> 
-  </a>
-  <a href="credit_user.html">Credit Account</a>
-  <a href="debit_user.html">Debit Account</a>
-  <a class="active" href="staff_edit_user.html">View Account</a>
-
-  <a href="index.html">Log Out</a>
-
-</div>
-
-<div class="content">
-  <div class="dashboard-header">
-    <h2>Staff Dashboard</h2>
+  <div class="s-layout__sidebar">
+      <a class="s-sidebar__trigger" href="#0">
+          <i class="fa fa-bars"></i>
+      </a>
+      
+      <nav class="s-sidebar__nav">
+        <ul>
+          <li>
+            <a  href="user_acc_profile.html">
+                  <img class="profile-img" src="./image/user.png" alt="">
+                <p class="profile-name">Julius Ngwu</p> 
+            </a>
+          </li>
+          <li>
+            <a class="s-sidebar__nav-link" href="credit_user.html">
+              <i class="fa fa-plus"></i><em>Credit Account</em>
+            </a>
+          </li>
+          <li>
+            <a class="s-sidebar__nav-link" href="debit_user.html">
+              <i class="fa fa-minus"></i><em>Debit Account</em>
+            </a>
+          </li>
+          <li>
+              <a class="s-sidebar__nav-link active" href="staff_edit_user.html">
+                <i class="fa fa-eye"></i><em>View Accounts</em>
+              </a>
+          </li>
+          <li>
+              <a class="s-sidebar__nav-link" href="./login.html">
+                <i class="fa fa-sign-out"></i><em>Log out</em>
+              </a>
+          </li>
+        </ul>
+      </nav>
   </div>
-  <div class="dasboard-body">
-      <div class="header-bg">
-          <img src="./image/bank3.jpg" alt="">
-      </div>
-      <div class="details-container">
-          <div class="transactions">
-            <table>
-                <caption>Account Details</caption>
-                <thead>
-                  <tr>
-                      <th scope="col">Acount Name</th>
-                      <th scope="col">Account Number</th>
-                      <th scope="col">Acc. Type</th>
-                      <th scope="col">Date</th>
-                      <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td data-label="Account Name" scope="row">Julius Ngwu</td>
-                    <td data-label="Account Num">0734215547</td>
-                    <td data-label="Acc type">Savings</td>
-                    <td data-label="Tran Amount">03 Jan. 2019</td>
-                    <td class="staff-action">
-                        <a href="specific_record.html" ><i class="fa fa-eye"></i></a>
-                        <a href="#" ><i class="fa fa-pencil-square-o"></i></a>
-                        <a href="#" ><i class="fa fa-trash-o"></i></a>
-                    </td>                  
-                  </tr>
-                  <tr>
+
+  <div class="content">
+    <div class="dashboard-header">
+      <h2>Staff Dashboard</h2>
+    </div>
+    <div class="dasboard-body">
+        <div class="header-bg">
+            <img src="./image/bank3.jpg" alt="">
+        </div>
+        <div class="details-container">
+            <div class="transactions">
+              <table>
+                  <caption>Account Details</caption>
+                  <thead>
+                    <tr>
+                        <th scope="col">Acount Name</th>
+                        <th scope="col">Account Number</th>
+                        <th scope="col">Acc. Type</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
                       <td data-label="Account Name" scope="row">Julius Ngwu</td>
                       <td data-label="Account Num">0734215547</td>
-                      <td data-label="Acc type">Current</td>
+                      <td data-label="Tran type">Current</td>
                       <td data-label="Tran Amount">03 Jan. 2019</td>
                       <td class="staff-action">
                           <a href="specific_record.html" ><i class="fa fa-eye"></i></a>
                           <a href="#" ><i class="fa fa-pencil-square-o"></i></a>
                           <a href="#" ><i class="fa fa-trash-o"></i></a>
                       </td>                  
-                  </tr>
-                  <tr>
-                      <td data-label="Account Name" scope="row">Julius Ngwu</td>
-                      <td data-label="Account Num">0734215547</td>
-                      <td data-label="Acc type">Savings</td>
-                      <td data-label="Tran Amount">03 Jan. 2019</td>
-                      <td class="staff-action">
-                          <a href="specific_record.html" ><i class="fa fa-eye"></i></a>
-                          <a href="#" ><i class="fa fa-pencil-square-o"></i></a>
-                          <a href="#" ><i class="fa fa-trash-o"></i></a>
-                      </td>                  
-                  </tr>
-                  <tr>
-                      <td data-label="Account Name" scope="row">Julius Ngwu</td>
-                      <td data-label="Account Num">0734215547</td>
-                      <td data-label="Acc type">Current</td>
-                      <td data-label="Tran Amount">03 Jan. 2019</td>
-                      <td class="staff-action">
-                          <a href="specific_record.html" ><i class="fa fa-eye"></i></a>
-                          <a href="#" ><i class="fa fa-pencil-square-o"></i></a>
-                          <a href="#" ><i class="fa fa-trash-o"></i></a>
-                      </td>                  
-                  </tr>
-                  <tr>
-                      <td data-label="Account Name" scope="row">Julius Ngwu</td>
-                      <td data-label="Account Num">0734215547</td>
-                      <td data-label="Acc type">Current</td>
-                      <td data-label="Tran Amount">03 Jan. 2019</td>
-                      <td class="staff-action">
-                          <a href="specific_record.html" ><i class="fa fa-eye"></i></a>
-                          <a href="#" ><i class="fa fa-pencil-square-o"></i></a>
-                          <a href="#" ><i class="fa fa-trash-o"></i></a>
-                      </td>                  
-                  </tr>
-                  <tr>
-                      <td data-label="Account Name" scope="row">Julius Ngwu</td>
-                      <td data-label="Account Number">0734215547</td>
-                      <td data-label="Acc type">Savings</td>
-                      <td data-label="Tran Amount">03 Jan. 2019</td>
-                      <td data-label="Amount" class="staff-action">
-                          <a href="specific_record.html" ><i class="fa fa-eye"></i></a>
-                          <a href="#" ><i class="fa fa-pencil-square-o"></i></a>
-                          <a href="#" ><i class="fa fa-trash-o"></i></a>
-                      </td>                  
-                  </tr>
-                  <tr class="nextPrevious">
-                    <td scope="row">
-                      <a href="#" ><i class="fa fa-angle-double-left"></i> Previous</i></a>
-                      <a href="#" >Next <i class="fa fa-angle-double-right"></i></i></a>
-                    </td>
-                    <td class="table-footer"></td>
-  
-                  </tr>
-                </tbody>            
-            </table>
-          </div>
-      </div>
+                    </tr>
+                    <tr>
+                        <td data-label="Account Name" scope="row">Julius Ngwu</td>
+                        <td data-label="Account Num">0734215547</td>
+                        <td data-label="Tran type">Savings</td>
+                        <td data-label="Tran Amount">03 Jan. 2019</td>
+                        <td class="staff-action">
+                            <a href="specific_record.html" ><i class="fa fa-eye"></i></a>
+                            <a href="#" ><i class="fa fa-pencil-square-o"></i></a>
+                            <a href="#" ><i class="fa fa-trash-o"></i></a>
+                        </td>                  
+                    </tr>
+                    <tr>
+                        <td data-label="Account Name" scope="row">Julius Ngwu</td>
+                        <td data-label="Account Num">0734215547</td>
+                        <td data-label="Tran type">Current</td>
+                        <td data-label="Tran Amount">03 Jan. 2019</td>
+                        <td class="staff-action">
+                            <a href="specific_record.html" ><i class="fa fa-eye"></i></a>
+                            <a href="#" ><i class="fa fa-pencil-square-o"></i></a>
+                            <a href="#" ><i class="fa fa-trash-o"></i></a>
+                        </td>                  
+                    </tr>
+                    <tr>
+                        <td data-label="Account Name" scope="row">Julius Ngwu</td>
+                        <td data-label="Account Num">0734215547</td>
+                        <td data-label="Tran type">Savings</td>
+                        <td data-label="Tran Amount">03 Jan. 2019</td>
+                        <td class="staff-action">
+                            <a href="specific_record.html" ><i class="fa fa-eye"></i></a>
+                            <a href="#" ><i class="fa fa-pencil-square-o"></i></a>
+                            <a href="#" ><i class="fa fa-trash-o"></i></a>
+                        </td>                  
+                    </tr>
+                    <tr>
+                        <td data-label="Account Name" scope="row">Julius Ngwu</td>
+                        <td data-label="Account Num">0734215547</td>
+                        <td data-label="Tran type">Current</td>
+                        <td data-label="Tran Amount">03 Jan. 2019</td>
+                        <td class="staff-action">
+                            <a href="specific_record.html" ><i class="fa fa-eye"></i></a>
+                            <a href="#" ><i class="fa fa-pencil-square-o"></i></a>
+                            <a href="#" ><i class="fa fa-trash-o"></i></a>
+                        </td>                  
+                    </tr>
+                    <tr>
+                        <td data-label="Account Name" scope="row">Julius Ngwu</td>
+                        <td data-label="Account Number">0734215547</td>
+                        <td data-label="Tran type">Savings</td>
+                        <td data-label="Tran Amount">03 Jan. 2019</td>
+                        <td data-label="Amount" class="staff-action">
+                            <a href="specific_record.html" ><i class="fa fa-eye"></i></a>
+                            <a href="#" ><i class="fa fa-pencil-square-o"></i></a>
+                            <a href="#" ><i class="fa fa-trash-o"></i></a>
+                        </td>                  
+                    </tr>
+                    <tr class="nextPrevious">
+                      <td scope="row">
+                        <a href="#" ><i class="fa fa-angle-double-left"></i> Previous</i></a>
+                        <a href="#" >Next <i class="fa fa-angle-double-right"></i></i></a>
+                      </td>
+                      <td class="table-footer"></td>
+    
+                    </tr>
+                  </tbody>            
+              </table>
+            </div>
+        </div>
+    </div>
   </div>
-</div>
-<footer>
-    <p>My Banka, Copyright &copy; 2019</p>
-</footer> 
+  <footer>
+      <p>My Banka, Copyright &copy; 2019</p>
+  </footer> 
 </body>
 </html>

@@ -3,24 +3,48 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./css/dashboard.css">
 <link rel="stylesheet" href="./css/user_dashboard.css">
 
 </head>
 <body>
-
-<div class="sidebar">
-  <a href="#home">
-    <div class="profile-img">
-      <img src="./image/user.png" alt="">
-    </div>
-    <p class="profile-name">Julius Ngwu</p> 
-  </a>
-  <a href="user_acc_profile.html">Account Details </a>
-  <a class="active" href="user_create-account.html">Create Account</a>
-  <a href="transaction_detail.html">Histroy</a>
-  <a href="./login.html">Log out</a>
-</div>
+  <div class="s-layout__sidebar">
+    <a class="s-sidebar__trigger" href="#0">
+        <i class="fa fa-bars"></i>
+    </a>
+    
+    <nav class="s-sidebar__nav">
+      <ul>
+        <li>
+          <a  href="user_acc_profile.html">
+                <img class="profile-img" src="./image/user.png" alt="">
+              <p class="profile-name">Julius Ngwu</p> 
+          </a>
+        </li>
+        <li>
+          <a class="s-sidebar__nav-link" href="user_acc_profile.html">
+            <i class="fa fa-table"></i><em>Account Details</em>
+          </a>
+        </li>
+        <li>
+          <a class="s-sidebar__nav-link active" href="user_create-account.html">
+            <i class="fa fa-folder-open-o"></i><em>Create Account</em>
+          </a>
+        </li>
+        <li>
+            <a class="s-sidebar__nav-link" href="transaction_detail.html">
+              <i class="fa fa-file-text-o"></i><em>Histroy</em>
+            </a>
+        </li>
+        <li>
+            <a class="s-sidebar__nav-link" href="./login.html">
+              <i class="fa fa-sign-out"></i><em>Log out</em>
+            </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 
 <div class="content">
   <div class="dashboard-header">
