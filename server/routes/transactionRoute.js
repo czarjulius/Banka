@@ -9,5 +9,6 @@ const router = express.Router();
 
 router.post('/transactions/:accountNumber/debit', auth, validateAccountNumber, validateAmount, role.isStaff, TransactionController.debitUser);
 router.post('/transactions/:accountNumber/credit', auth, validateAccountNumber, validateAmount, role.isStaff, TransactionController.creditUser);
+router.get('/transactions', auth, role.adminStaff, TransactionController.getAllTransactions);
 
 export default router;

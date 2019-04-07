@@ -12,6 +12,18 @@ const validateAccount = [
     .isIn(['savings', 'current', 'SAVINGS', 'CURRENT', 'Savings', 'Current'])
     .withMessage('only savings or current account types are allowed')
     .trim(),
+
+  check('passportUrl')
+    .not().isEmpty()
+    .withMessage('Passport is required')
+    .trim(),
+
+  check('amount')
+    .not().isEmpty()
+    .withMessage('Amount is required')
+    .isNumeric()
+    .withMessage('Amount must be a number')
+    .trim(),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

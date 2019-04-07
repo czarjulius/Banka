@@ -18,6 +18,7 @@ describe('tests for Account controller', () => {
       api.post('/api/v1/auth/signin')
         .send(user)
         .end((err, res) => {
+          token = res.body.data.token;
           expect(res.status).to.equal(200);
           expect(res.body).to.have.property('status');
           expect(res.body.status).to.equal(200);
@@ -70,15 +71,15 @@ describe('tests for Account controller', () => {
   describe('/PATCh updates account status', () => {
     it('should update the account status', (done) => {
       const newStatus = {
-        status: 'active',
+        status: 'dormant',
       };
-      api.post('/api/v1/account/0733215768')
+      api.patch('/api/v1/account/0733215768')
         .set('x-access-token', token)
         .send(newStatus)
         .end((err, res) => {
-          expect(res.status).to.equal(201);
+          expect(res.status).to.equal(200);
           expect(res.body).to.have.property('status');
-          expect(res.body.status).to.equal(201);
+          expect(res.body.status).to.equal(200);
           expect(res.body).to.have.property('data');
           done();
         });
@@ -87,13 +88,53 @@ describe('tests for Account controller', () => {
       const newStatus = {
         status: 'activeee',
       };
-      api.post('/api/v1/account/0733215768')
+      api.patch('/api/v1/account/0893215768')
         .set('x-access-token', token)
         .send(newStatus)
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body.error[0]).to.equal('only active or dormant  are allowed');
           expect(res.body).to.have.property('error');
+          done();
+        });
+    });
+  });
+
+  describe('/DELETE deletes an account ', () => {
+    it('should delete the specified account', (done) => {
+      api.delete('/api/v1/accounts/0893215768')
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(203);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(203);
+          expect(res.body).to.have.property('message');
+          expect(res.body.message).to.equal('Account successfully deleted');
+          done();
+        });
+    });
+    it('should fail to Update account status', (done) => {
+      api.delete('/api/v1/accounts/0733215760')
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.error).to.equal('Account not found');
+          expect(res.body).to.have.property('error');
+          done();
+        });
+    });
+  });
+
+  describe('/GET get all Accounts', () => {
+    it('should get all Account records', (done) => {
+      api.get('/api/v1/accounts')
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(200);
+          expect(res.body).to.have.property('data');
+          expect(res.body.data).to.be.an('Array');
           done();
         });
     });
