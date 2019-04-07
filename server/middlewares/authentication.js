@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import AuthenticationHelper from '../helpers/Authentication';
 
 dotenv.config();
 
@@ -14,7 +15,8 @@ const auth = (req, res, next) => {
   }
   try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
-    req.userData = decoded;
+    const user = AuthenticationHelper.getAuthUser(decoded.id);
+    req.authUser = user;
     next();
   } catch (error) {
     res.status(401).json({

@@ -1,11 +1,11 @@
 const users = [
   {
     id: 1,
-    email: 'meeky.ae@gamil.com',
+    email: 'admin@gmail.com',
     firstName: 'julius',
     lastName: 'Ngwu',
-    phoneNumber: '090897689',
-    password: '4954i9549',
+    phoneNumber: '09089768943',
+    password: 'admin123',
     type: 'staff',
     isAdmin: true,
   },
