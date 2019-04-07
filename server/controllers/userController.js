@@ -38,6 +38,34 @@ class UserController {
       },
     });
   }
+
+  static login(req, res) {
+    const {
+      email, password,
+    } = req.body;
+
+    const currentUser = userModel.find(user => user.email === email && user.password === password);
+    if (currentUser) {
+      const token = generateToken(currentUser.id, currentUser.email, currentUser.isAdmin, currentUser.type);
+      return res.header('x-access-token', token).status(200).json({
+        status: '200',
+        data: {
+          token,
+          id: currentUser.id,
+          firstName: currentUser.firstName,
+          lastName: currentUser.lastName,
+          email: currentUser.email,
+          phoneNumber: currentUser.phoneNumber,
+          type: currentUser.type,
+          isAdmin: currentUser.isAdmin,
+        },
+      });
+    }
+    return res.status(404).json({
+      status: '404',
+      error: 'Username or Password is Incorrect',
+    });
+  }
 }
 
 export default UserController;
