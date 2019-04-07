@@ -9,5 +9,6 @@ const router = express.Router();
 
 router.post('/accounts', auth, validateAccount, accountController.postAccount);
 router.patch('/account/:accountNumber', auth, validateAccountNumber, role.adminStaff, accountController.updateAccount);
+router.delete('/accounts/:accountNumber', auth, validateAccountNumber, role.adminStaff, accountController.deleteAccount);
 
 export default router;
