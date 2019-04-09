@@ -1,24 +1,16 @@
 language: node_js
-node_js: 
-  - "stable"
-cache:
-  directories:
-    - "node_modules"
+node_js:
+- "10.8"
+- "8.12"
 env:
-  global:
-  - CC_TEST_REPORTER_ID=5174467b63934473e3631ebf32539cf7b330416b0cdf2322a0d5b0599e804db1
+global:
+- export NODE_ENV=test
+branches:
+except:
+- gh-pages
+- master
 before_script:
-  - npm install -g nyc
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
-
+- npm install
 script:
-  - nyc --reporter=lcov npm test
-
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  - nyc report --reporter=text-lcov npm test | coveralls
-
-notifications:
-  email: false
+- npm test
+after_success: npm run coveralls
