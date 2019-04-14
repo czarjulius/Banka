@@ -7,7 +7,7 @@
     "test": " nyc mocha --reporter spec --timeout 15000 --require @babel/register ./server/tests/*.js --exit",
     "coverage": "nyc --reporter=html --reporter=text --reporter=lcov mocha --reporter spec --require @babel/register ./server/tests/*.js --exit",
     "coveralls": "npm run coverage -- --report lcovonly && cat coverage/lcov.info | coveralls",
-    "start:dev": "nodemon --require @babel/register server.js",
+    "start-dev": "nodemon --require @babel/register server.js",
     "start": "node --require @babel/register server.js"
   },
   "repository": {
@@ -21,11 +21,7 @@
   },
   "homepage": "https://github.com/czarjulius/Banka#readme",
   "dependencies": {
-    "@babel/polyfill": "^7.4.0",
-    "@babel/preset-env": "^7.4.2",
     "@babel/register": "^7.4.0",
-    "@babel/core": "^7.4.0",
-    "@babel/node": "^7.2.2",
     "bcrypt": "^3.0.5",
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",
@@ -34,6 +30,9 @@
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.4.2",
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
     "coveralls": "^3.0.3",
     "chai": "^4.2.0",
     "eslint": "^5.15.3",

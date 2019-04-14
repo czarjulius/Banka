@@ -24,6 +24,7 @@ const validateAccount = [
     .isNumeric()
     .withMessage('Amount must be a number')
     .trim(),
+       
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

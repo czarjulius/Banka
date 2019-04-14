@@ -43,7 +43,7 @@ To run tests for the server side
 
 # API
 
-- Heroku - 
+- Heroku - https://julius-banka.herokuapp.com/
 
  | Method | Description | Endpoints      | Role |
  | ------ | ----------- | -------------- | ---- |

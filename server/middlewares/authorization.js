@@ -19,16 +19,6 @@ class Role {
     }
     next();
   }
-
-  static adminStaff(req, res, next) {
-    if (req.authUser.isAdmin === false) {
-      return res.status(403).json({
-        status: 403,
-        error: 'Access denied! You are not an Admin or a Staff',
-      });
-    }
-    next();
-  }
 }
 
 export default Role;
