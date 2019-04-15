@@ -19,6 +19,12 @@ const validateAccountNumber = (req, res, next) => {
       error: 'Account Number must be a 10 digits ',
     });
   }
+  if (accountNumber.toString().replace(/\s/g, '').length === 0) {
+    return res.status(400).json({
+      status: 400,
+      error: 'Account Number must be empty ',
+    });
+  }
   next();
 };
 
