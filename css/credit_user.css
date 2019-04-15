@@ -38,6 +38,14 @@ select[type="text"] {
 .credit-form{
   text-align: center;
 }
+
+.fa-plus {
+  color: rgb(118, 185, 9);
+}
+
+.fa-minus {
+  color: rgb(187, 13, 13);
+}
 .nextPrevious td a:hover{
   font-size: 12px;
   transition: 0.5s;
@@ -61,4 +69,12 @@ a:hover {
   .btn {
     width:30%;
   }
+}
+
+@media screen and (max-width: 600px) {
+  .credit-form {
+    padding-top: 100px;
+
+  }
+
 }
