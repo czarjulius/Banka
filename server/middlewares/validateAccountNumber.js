@@ -2,6 +2,12 @@
 /* eslint-disable consistent-return */
 const validateAccountNumber = (req, res, next) => {
   const { accountNumber } = req.params;
+  if (accountNumber.toString().replace(/\s/g, '').length === 0) {
+    return res.status(400).json({
+      status: 400,
+      error: 'Account Number must not be empty ',
+    });
+  }
   if (isNaN(accountNumber)) {
     return res.status(400).json({
       status: 400,
