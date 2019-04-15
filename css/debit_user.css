@@ -21,6 +21,14 @@ input[type="text"]:hover,input[type="password"]:hover,input[type="email"]:hover 
   transition:0.5;
 }
 
+.fa-plus {
+  color: rgb(118, 185, 9);
+}
+
+.fa-minus {
+  color: rgb(187, 13, 13);
+}
+
 .btn {
   background: #035AB7;
   width:10%;

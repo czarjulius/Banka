@@ -45,14 +45,17 @@ th, td {
 .fa{
 padding: 10px;
 }
+.fa-plus {
+  color: rgb(118, 185, 9);
+}
+
+.fa-minus {
+  color: rgb(187, 13, 13);
+}
+
 .fa-trash-o {
-  color: rgb(185, 57, 57);
+  color: rgb(187, 18, 18);
 }
-
-.fa-pencil-square-o {
-  color: rgb(73, 73, 47);
-}
-
 .fa-eye {
   color: rgb(3, 26, 54);
 }
