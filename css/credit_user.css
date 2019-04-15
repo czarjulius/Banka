@@ -70,3 +70,11 @@ a:hover {
     width:30%;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .credit-form {
+    padding-top: 100px;
+
+  }
+
+}
