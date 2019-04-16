@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import db from '../models/db';
 import generateToken from '../middlewares/generateToken';
-import userSignup from '../models/userQuery';
+import { userSignup, userDetails } from '../models/userQuery';
 
 dotenv.config();
 class User {
@@ -30,6 +30,51 @@ class User {
           type: result.rows[0].type,
           isAdmin: result.rows[0].isadmin,
           registeredOn: result.rows[0].registeredon,
+        },
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: 500,
+        error: err.message,
+      });
+    }
+  }
+
+  static async userLogin(req, res) {
+    try {
+      const { email, password } = req.body;
+      const userEmail = await db.query(userDetails, [email]);
+      if (!userEmail.rows.length) {
+        return res.status(400).json({
+          status: 400,
+          error: 'invalid email or password',
+        });
+      }
+      const userPassword = await bcrypt.compare(password, userEmail.rows[0].password);
+      if ((!userEmail.rows[0]) || (userPassword === false)) {
+        return res.status(400).json({
+          status: 400,
+          error: 'invalid email or password',
+        });
+      }
+
+      const rows = userEmail;
+      const {
+        id, firstname, lastname, phonenumber, type, isadmin, registeredon,
+      } = rows.rows[0];
+      const token = generateToken(rows.rows[0].id, rows.rows[0].email, rows.rows[0].isadmin, rows.rows[0].type);
+      return res.header('x-access-token', token).status(200).json({
+        status: 200,
+        data: {
+          token,
+          id,
+          firstName: firstname,
+          lastName: lastname,
+          email,
+          phoneNumber: phonenumber,
+          type,
+          isAdmin: isadmin,
+          registeredOn: registeredon,
         },
       });
     } catch (err) {
