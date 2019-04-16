@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import {
-  createAccount, accountDetails, updateAccountStatus,
+  createAccount, accountDetails, updateAccountStatus, deleteAccount,
 } from '../models/accountQuery';
 import db from '../models/db';
 /**
@@ -50,7 +50,6 @@ class AccountController {
   * @param {integer} - Number of the Account
   * @return {object} - The account that has the specified number with new status
   * @method editAccountStatus
-
   */
   static async editAccountStatus(req, res) {
     const { accountNumber } = req.params;
@@ -77,6 +76,35 @@ class AccountController {
       return res.status(500).json({
         status: 500,
         error: err.message,
+      });
+    }
+  }
+
+  /**
+  * @description Delete an Account
+  * @param {integer} - Number of the Account
+  * @return {object} - The satus code and message to show delete action completed
+  */
+  static async deleteAccount(req, res) {
+    try {
+      const { accountNumber } = req.params;
+      let { rows } = await db.query(accountDetails, [accountNumber]);
+      if (!rows[0]) {
+        return res.status(404).json({
+          status: 404,
+          error: 'Account not found',
+        });
+      }
+      rows = await db.query(deleteAccount, [accountNumber]);
+
+      res.status(200).json({
+        status: 200,
+        message: 'Account has been deleted successfully',
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        error: error.message,
       });
     }
   }

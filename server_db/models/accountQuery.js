@@ -6,6 +6,8 @@ const accountDetails = 'SELECT * FROM accounts WHERE accountNumber= $1';
 
 const updateAccountStatus = 'UPDATE accounts SET status = $1 WHERE accountNumber = $2';
 
+const deleteAccount = 'DELETE from accounts where accountNumber = $1';
+
 export {
-  createAccount, accountDetails, updateAccountStatus,
+  createAccount, accountDetails, updateAccountStatus, deleteAccount,
 };

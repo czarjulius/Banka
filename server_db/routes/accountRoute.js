@@ -12,4 +12,7 @@ router.post('/accounts', auth, validateAccount, accountController.postAccount);
 router.patch('/account/:accountNumber', auth, validateAccountNumber, 
   role.admin, accountController.editAccountStatus);
 
+router.delete('/accounts/:accountNumber', auth, validateAccountNumber,
+  role.admin, accountController.deleteAccount);
+
 export default router;

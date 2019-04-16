@@ -13,7 +13,7 @@ describe('tests for user controller', async () => {
       const user = {
         firstName: 'Julius',
         lastName: 'Ngwu',
-        email: 'julius@gmail.com',
+        email: 'jjude@gmail.com',
         password: '123def',
         phoneNumber: '09088776654',
         type: 'staff',
@@ -36,7 +36,7 @@ describe('tests for user controller', async () => {
     it('should not create a new user when the firstname is not provided', (done) => {
       const user = {
         lastName: 'Ngwu',
-        email: 'julius@gmail.com',
+        email: 'jjude@gmail.com',
         password: '123def',
         phoneNumber: '09088776654',
       };
