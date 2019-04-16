@@ -1,7 +1,7 @@
+/* eslint-disable import/no-mutable-exports */
 import { Pool } from 'pg';
 import 'dotenv/config';
 
-console.log(process.env.NODE_ENV);
 let pool;
 if (process.env.NODE_ENV === 'test') {
   pool = new Pool({ connectionString: process.env.TESTDB_URL });
@@ -11,9 +11,5 @@ if (process.env.NODE_ENV === 'test') {
     ssl: false,
   });
 }
-
-// const db = {
-//   query: (text, params) => pool.query(text, params),
-// };
 
 export default pool;

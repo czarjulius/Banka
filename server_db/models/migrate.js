@@ -7,7 +7,7 @@ const tableQuery = async () => {
     const dropUserTable = await pool.query('DROP TABLE IF EXISTS users CASCADE;');
     const dropAcountTable = await pool.query('DROP TABLE IF EXISTS accounts CASCADE;');
     const dropTransactionTable = await pool.query('DROP TABLE IF EXISTS transactions CASCADE;');
-    
+
     const userTable = await pool.query(`CREATE TABLE IF NOT EXISTS users(
       id SERIAL PRIMARY KEY,
       firstName VARCHAR(50) NOT NULL,
@@ -36,8 +36,6 @@ const tableQuery = async () => {
       type VARCHAR(15) NOT NULL,
       balance float DEFAULT '0.00',
       createdOn DATE DEFAULT CURRENT_TIMESTAMP)`);
-
-    console.log(dropUserTable, dropAcountTable, dropTransactionTable);
 
   } catch (err) {
     console.log(err.stack);

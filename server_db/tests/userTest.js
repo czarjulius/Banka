@@ -33,7 +33,7 @@ describe('tests for user controller', async () => {
         });
     });
 
-    it('should not create a new user', (done) => {
+    it('should not create a new user when the firstname is not provided', (done) => {
       const user = {
         lastName: 'Ngwu',
         email: 'julius@gmail.com',
