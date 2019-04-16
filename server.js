@@ -1,6 +1,7 @@
+import '@babel/polyfill';
 import express from 'express';
 import bodyParser from 'body-parser';
-import router from './server/routes/index';
+import router from './server_db/routes/index';
 
 const app = express();
 
