@@ -1,6 +1,7 @@
 import { Pool } from 'pg';
 import 'dotenv/config';
 
+console.log(process.env.NODE_ENV);
 let pool;
 if (process.env.NODE_ENV === 'test') {
   pool = new Pool({ connectionString: process.env.TESTDB_URL });
@@ -11,8 +12,8 @@ if (process.env.NODE_ENV === 'test') {
   });
 }
 
-const db = {
-  query: (text, params) => pool.query(text, params),
-};
+// const db = {
+//   query: (text, params) => pool.query(text, params),
+// };
 
-export default db;
+export default pool;
