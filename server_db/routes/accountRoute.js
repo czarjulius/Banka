@@ -9,4 +9,7 @@ const router = express.Router();
 
 router.post('/accounts', auth, validateAccount, accountController.postAccount);
 
+router.patch('/account/:accountNumber', auth, validateAccountNumber, 
+  role.admin, accountController.editAccountStatus);
+
 export default router;

@@ -1,5 +1,7 @@
 /* eslint-disable consistent-return */
-import createAccount from '../models/accountQuery';
+import {
+  createAccount, accountDetails, updateAccountStatus,
+} from '../models/accountQuery';
 import db from '../models/db';
 /**
  * @description Defines the actions for Account endpoints
@@ -33,6 +35,42 @@ class AccountController {
           email,
           type,
           openingBalace: parseFloat(amount, 10).toFixed(2),
+        },
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: 500,
+        error: err.message,
+      });
+    }
+  }
+
+  /**
+  * @description Patch an Account
+  * @param {integer} - Number of the Account
+  * @return {object} - The account that has the specified number with new status
+  * @method editAccountStatus
+
+  */
+  static async editAccountStatus(req, res) {
+    const { accountNumber } = req.params;
+    const { status } = req.body;
+    const { rows } = await db.query(accountDetails, [accountNumber]);
+    if (!rows[0]) {
+      return res.status(404).json({
+        status: 404,
+        error: 'Account not found',
+      });
+    }
+
+    await db.query(updateAccountStatus, [status, accountNumber]);
+    const result = await db.query(accountDetails, [accountNumber]);
+    try {
+      res.status(200).json({
+        status: 200,
+        data: {
+          accountNumber,
+          state: result.rows[0].status,
         },
       });
     } catch (err) {
