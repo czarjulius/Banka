@@ -1,8 +1,18 @@
 /* eslint-disable consistent-return */
 import createAccount from '../models/accountQuery';
 import db from '../models/db';
-
+/**
+ * @description Defines the actions for Account endpoints
+ * @class AccountController
+ */
 class AccountController {
+  /**
+   * @description Creates new account record
+   * @static
+   * @param {object} req - request
+   * @param {object} res - response
+   * @method postAccount
+   */
   static async postAccount(req, res) {
     try {
       const { type, amount } = req.body;

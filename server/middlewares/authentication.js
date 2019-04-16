@@ -5,6 +5,13 @@ import AuthenticationHelper from '../helpers/Authentication';
 
 dotenv.config();
 
+/**
+    * @description Authenticate a user
+    * @method auth
+    * @params {object} req
+    * @return {object} res
+    *
+   */
 const auth = (req, res, next) => {
   const token = req.header('x-access-token') || req.body.token;
   if (!token) {

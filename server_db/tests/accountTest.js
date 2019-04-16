@@ -64,7 +64,7 @@ describe('tests for Account controller', () => {
     });
     it('should fail to create a new account', (done) => {
       const account = {
-        passportUrl: 'www.user.png',
+        amount: 60.54,
       };
       api.post('/api/v1/accounts')
         .set('x-access-token', token)

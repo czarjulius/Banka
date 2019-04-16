@@ -5,7 +5,18 @@ import generateToken from '../middlewares/generateToken';
 import { userSignup, userDetails } from '../models/userQuery';
 
 dotenv.config();
+/**
+ * @description Defines the actions for User endpoints
+ * @class AccountController
+ */
 class User {
+  /**
+   * @description Creates a new user record
+   * @static
+   * @param {object} req - The form data to be inputted
+   * @param {object} res - The status code and data including login token..
+   * @method postUser
+   */
   static async userSignup(req, res) {
     try {
       const {
@@ -40,6 +51,13 @@ class User {
     }
   }
 
+  /**
+    * @description Login  a user
+    * @method login
+    * @params {object} req - The form data to be inputted
+    * @return {object} res - The status code and data including login token.
+    *
+   */
   static async userLogin(req, res) {
     try {
       const { email, password } = req.body;
