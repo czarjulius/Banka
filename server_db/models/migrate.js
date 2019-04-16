@@ -21,20 +21,21 @@ const tableQuery = async () => {
 
     const accountTable = await pool.query(`CREATE TABLE IF NOT EXISTS accounts(
       id SERIAL PRIMARY KEY,
-      accountNumber VARCHAR(50) UNIQUE NOT NULL,
+      accountNumber numeric UNIQUE NOT NULL,
       type VARCHAR(15) NOT NULL,
       status VARCHAR(15) DEFAULT 'active',
       owner INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-      balance float DEFAULT '0.00',
+      balance float DEFAULT 0.00,
       createdOn DATE DEFAULT CURRENT_TIMESTAMP)`);
 
     const transactionTable = await pool.query(`CREATE TABLE IF NOT EXISTS transactions(
       id SERIAL PRIMARY KEY,
-      accountNumber VARCHAR(50) UNIQUE NOT NULL,
+      accountNumber numeric NOT NULL,
       amount float NOT NULL,
       cashier INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
       type VARCHAR(15) NOT NULL,
-      balance float DEFAULT '0.00',
+      oldbalance float DEFAULT 0.00,
+      newbalance float DEFAULT 0.00,
       createdOn DATE DEFAULT CURRENT_TIMESTAMP)`);
 
   } catch (err) {

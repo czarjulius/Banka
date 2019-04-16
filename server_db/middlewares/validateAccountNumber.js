@@ -9,8 +9,6 @@
    */
 const validateAccountNumber = (req, res, next) => {
   const { accountNumber } = req.params;
-  
-    /* Check if account is empty */
   if (accountNumber.toString().replace(/\s/g, '').length === 0) {
     return res.status(400).json({
       status: 400,
