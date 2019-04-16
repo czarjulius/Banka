@@ -1,10 +1,14 @@
 /* eslint-disable consistent-return */
 import bcrypt from 'bcrypt';
-import db from './db';
+import pool from './db';
 
 const tableQuery = async () => {
-  try {
-    const userTable = await db.query(`CREATE TABLE IF NOT EXISTS users(
+  try {  
+    const dropUserTable = await pool.query('DROP TABLE IF EXISTS users CASCADE;');
+    const dropAcountTable = await pool.query('DROP TABLE IF EXISTS accounts CASCADE;');
+    const dropTransactionTable = await pool.query('DROP TABLE IF EXISTS transactions CASCADE;');
+
+    const userTable = await pool.query(`CREATE TABLE IF NOT EXISTS users(
       id SERIAL PRIMARY KEY,
       firstName VARCHAR(50) NOT NULL,
       lastNAme VARCHAR(50) NOT NULL,
@@ -13,10 +17,9 @@ const tableQuery = async () => {
       phoneNumber VARCHAR(15) NOT NULL,
       type VARCHAR(15) DEFAULT 'user',
       isAdmin BOOLEAN DEFAULT FALSE,
-      registeredOn DATE DEFAULT CURRENT_TIMESTAMP
-    )`);
+      registeredOn DATE DEFAULT CURRENT_TIMESTAMP)`);
 
-    const accountTable = await db.query(`CREATE TABLE IF NOT EXISTS accounts(
+    const accountTable = await pool.query(`CREATE TABLE IF NOT EXISTS accounts(
       id SERIAL PRIMARY KEY,
       accountNumber VARCHAR(50) UNIQUE NOT NULL,
       type VARCHAR(15) NOT NULL,
@@ -25,7 +28,7 @@ const tableQuery = async () => {
       balance float DEFAULT '0.00',
       createdOn DATE DEFAULT CURRENT_TIMESTAMP)`);
 
-    const transactionTable = await db.query(`CREATE TABLE IF NOT EXISTS transactions(
+    const transactionTable = await pool.query(`CREATE TABLE IF NOT EXISTS transactions(
       id SERIAL PRIMARY KEY,
       accountNumber VARCHAR(50) UNIQUE NOT NULL,
       amount float NOT NULL,
@@ -33,6 +36,7 @@ const tableQuery = async () => {
       type VARCHAR(15) NOT NULL,
       balance float DEFAULT '0.00',
       createdOn DATE DEFAULT CURRENT_TIMESTAMP)`);
+
   } catch (err) {
     console.log(err.stack);
     return err.stack;

@@ -9,7 +9,9 @@
     "coveralls": "npm run coverage -- --report lcovonly && cat coverage/lcov.info | coveralls",
     "start-dev": "nodemon --require @babel/register server.js",
     "start": "node --require @babel/register server.js",
-    "mig": "babel-node ./server_db/models/migrate.js"
+    "mig": "babel-node ./server_db/models/migrate.js",
+    "mig-test": "cross-env NODE_ENV=test babel-node ./server_db/models/migrate.js"
+
   },
   "repository": {
     "type": "git",

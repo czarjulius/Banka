@@ -1,3 +1,4 @@
+/* eslint-disable import/no-mutable-exports */
 import { Pool } from 'pg';
 import 'dotenv/config';
 
@@ -11,8 +12,4 @@ if (process.env.NODE_ENV === 'test') {
   });
 }
 
-const db = {
-  query: (text, params) => pool.query(text, params),
-};
-
-export default db;
+export default pool;
