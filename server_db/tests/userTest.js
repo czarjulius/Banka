@@ -51,4 +51,40 @@ describe('tests for user controller', async () => {
         });
     });
   });
+
+  describe('/POST Login user', () => {
+    it('should login a registered user', (done) => {
+      const user = {
+        email: 'julius@gmail.com',
+        password: '123def',
+      };
+      api.post('/api/v1/auth/signin')
+        .send(user)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(200);
+          expect(res.body).to.have.property('data');
+          expect(res.body.data).to.have.property('token');
+          expect(res.body.data).to.have.property('id');
+          expect(res.header).to.have.property('x-access-token');
+          done();
+        });
+    });
+
+    it('should not login user if the password is incorrect', (done) => {
+      const user = {
+        email: 'julius@gmail.com',
+        password: '123defgh',
+      };
+      api.post('/api/v1/auth/signin')
+        .send(user)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body).to.have.property('error');
+          expect(res.body.error).to.equal('invalid email or password');
+          done();
+        });
+    });
+  });
 });
