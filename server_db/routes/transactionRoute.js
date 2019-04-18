@@ -10,4 +10,8 @@ const router = express.Router();
 router.post('/transactions/:accountNumber/credit', auth, validateAccountNumber, validateAmount,
  Role.isStaff, transactionController.creditUser);
 
+ router.post('/transactions/:accountNumber/debit', auth, validateAccountNumber, validateAmount,
+  Role.isStaff, transactionController.debitUser);
+
+
 export default router;
