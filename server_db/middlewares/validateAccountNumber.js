@@ -9,8 +9,6 @@
    */
 const validateAccountNumber = (req, res, next) => {
   const { accountNumber } = req.params;
-  
-    /* Check if account is empty */
   if (accountNumber.toString().replace(/\s/g, '').length === 0) {
     return res.status(400).json({
       status: 400,
@@ -18,7 +16,7 @@ const validateAccountNumber = (req, res, next) => {
     });
   }
 
-    /* Check if account is a number */
+  /* Check if account is a number */
   if (isNaN(accountNumber)) {
     return res.status(400).json({
       status: 400,
@@ -26,19 +24,11 @@ const validateAccountNumber = (req, res, next) => {
     });
   }
 
-    /* Check if account is a whole number */
+  /* Check if account is a whole number */
   if ((accountNumber % 1) !== 0) {
     return res.status(400).json({
       status: 400,
       error: 'Account Number must be a positive integer ',
-    });
-  } 
-  
-    /* Check if account is up to 10 digits */
-  if (accountNumber.length !== 10) {
-    return res.status(400).json({
-      status: 400,
-      error: 'Account Number must be a 10 digits ',
     });
   }
   next();
