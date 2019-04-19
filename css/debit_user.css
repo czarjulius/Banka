@@ -10,10 +10,14 @@ input[type="text"],input[type="password"],input[type="email"],select[type="text"
   width:30%;
   cursor: text;
   margin-top: 8px;
+  font-family: Agency FB;
+
 
 }
 select[type="text"] {
   cursor: pointer;
+  font-family: Agency FB;
+
 }
 input[type="text"]:hover,input[type="password"]:hover,input[type="email"]:hover {
   border: 1px solid #4484CE;
@@ -21,6 +25,11 @@ input[type="text"]:hover,input[type="password"]:hover,input[type="email"]:hover 
   transition:0.5;
 }
 
+.fa{
+  padding: 10px;
+  color: rgb(48, 127, 138);
+  }
+  
 .fa-plus {
   color: rgb(118, 185, 9);
 }

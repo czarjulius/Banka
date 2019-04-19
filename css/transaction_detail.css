@@ -4,9 +4,18 @@ table {
   padding: 0;
   width: 100%;
   table-layout: fixed;
-  border: 0px solid #ddd;
+  border: 1px solid #ddd;
 }
 
+table th {
+  background-color: rgb(63, 72, 82);
+  color: #fff;				
+  text-align: left;
+  padding: 25px;
+}
+table tr:nth-child(odd){
+  background-color: rgb(171, 191, 197);
+}
 th, td {
   text-align: left;
   padding: 15px;
@@ -17,7 +26,12 @@ th, td {
   margin-top: 20px;
 }
 .transactions {
+  font-family: Agency FB;
+  padding: 5px;
   margin: auto;
+  width: 70%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .debit-cash {
@@ -25,7 +39,7 @@ th, td {
 }
 
 .nextPrevious td a{
-  padding: 10px;
+  padding: 5px;
   font-size: 14px;
   color: rgb(3, 26, 54);
 }
@@ -35,6 +49,11 @@ th, td {
   transition: 0.5s;
 }
 
+.fa{
+  padding: 10px;
+  color: rgb(48, 127, 138);
+  }
+  
 a:hover {
   font-size: 12px;
   transition: 0.5s;
