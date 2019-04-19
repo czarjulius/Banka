@@ -13,6 +13,11 @@ a:hover {
   margin: auto;
 }
 
+.fa{
+  padding: 10px;
+  color: rgb(48, 127, 138);
+  }
+  
 .create-account {
   margin: auto;
   width: 30%;
@@ -22,6 +27,7 @@ a:hover {
 }
 form {
   padding: 30px;
+
 }
 
 .form-header {
@@ -43,15 +49,19 @@ input[type="text"],input[type="password"],input[type="email"],select[type="text"
   font-size:1em;
   height:37px;
   outline:none;
-  width:50%;
+  width:70%;
   cursor: text;
   margin-top: 20px;
+  font-family: Agency FB;
+
 }
 
 select[type="text"] {
   cursor: pointer;
   color:rgb(141, 136, 136);
   margin-top: 10px;
+  font-family: Agency FB;
+
 }
 
 label{

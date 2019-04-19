@@ -2,7 +2,48 @@ a:hover {
   font-size: 12px;
   transition: 0.5s;
   }
-.details-container {
+  .profile-container{
+    margin: auto;
+    width: 60%;
+    height: auto;
+    text-align: center;
+    color: gray
+  }
+  .personal-detail-container{
+    padding: 30px;
+    width: 98%;
+    height: auto;
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  }
+
+  .fa{
+    padding: 10px;
+    color: rgb(48, 127, 138);
+    }
+    
+  .profile-image{
+    width: 35%;
+    height: auto;
+    margin-right: 35px;
+  }
+  .profile-detail{
+    padding: 10px;
+    width: 60%;
+    height: auto;
+  }
+  .account-detail-container{
+    padding: 30px;
+    width: 98%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  }
+/* .details-container {
   display: flex;
   font-family: 'Times New Roman', Times, serif;
   flex-wrap: wrap;
@@ -24,7 +65,7 @@ a:hover {
 width: 200px;
 height: 200px;
 
-}
+} */
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -33,12 +74,12 @@ table {
 
 th, td {
   text-align: right;
-  padding: 10px;
+  /* padding: 10px; */
   font-size: 15px;
 }
 
 th {
-  color: rgb(19, 20, 20);
+  color: rgb(3, 26, 54);
 }
 
 th:first-child, td:first-child {
@@ -67,3 +108,16 @@ caption{
 .fa-user{
   color: rgb(157, 200, 240);
 }
+
+@media screen and (max-width: 1024px) {
+  .personal-detail-container{
+    flex-wrap: wrap;
+  }
+  .profile-detail{
+    width: 90%;
+  }
+  .profile-container{
+    width: 90%;
+  }
+}
+

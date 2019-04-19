@@ -11,6 +11,12 @@ table {
   table-layout: fixed;
 }
 
+table th {
+  background-color: rgb(63, 72, 82);
+  color: #fff;				
+  text-align: left;
+  padding: 25px;
+}
 th, td {
   text-align: center;
   padding: 15px;
@@ -22,16 +28,19 @@ th, td {
   margin-bottom: 50px;
 }
 .transactions {
-  overflow-x:auto;
+  font-family: Agency FB;
+  padding: 5px;
   margin: auto;
+  width: 70%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
 .debit-cash {
   color: rgb(247, 9, 9);
 }
 
 .nextPrevious td a{
-  padding: 10px;
+  padding: 2px;
   font-size: 12px;
   color: rgb(3, 26, 54);
 }
@@ -54,6 +63,7 @@ th, td {
 }
 .fa{
 padding: 10px;
+color: rgb(48, 127, 138);
 }
 .fa-times {
   color: rgb(185, 57, 57);
@@ -128,8 +138,9 @@ select[type="text"]{
   font-size:1em;
   height:32px;
   outline:none;
-  width:40%;
+  width:30%;
   cursor: pointer;
+  font-family: Agency FB;
 }
 input[type="text"] {
   padding:5px;
