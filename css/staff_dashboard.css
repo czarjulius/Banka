@@ -3,6 +3,15 @@ a:hover {
   transition: 0.5s;
   }
 
+  table th {
+    background-color: rgb(63, 72, 82);
+    color: #fff;				
+    text-align: left;
+    padding: 25px;
+  }
+  table tr:nth-child(odd){
+    background-color: rgb(171, 191, 197);
+  }
 table {
   border-collapse: collapse;
   margin: 0;
@@ -23,8 +32,12 @@ th, td {
   margin-bottom: 50px;
 }
 .transactions {
-  overflow-x:auto;
+  font-family: Agency FB;
+  padding: 5px;
   margin: auto;
+  width: 70%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .debit-cash {
@@ -32,7 +45,7 @@ th, td {
 }
 
 .nextPrevious td a{
-  padding: 10px;
+  padding: 2px;
   font-size: 14px;
   color: rgb(3, 26, 54);
 }
@@ -44,6 +57,7 @@ th, td {
 
 .fa{
 padding: 10px;
+color: rgb(48, 127, 138);
 }
 .fa-plus {
   color: rgb(118, 185, 9);
@@ -56,8 +70,11 @@ padding: 10px;
 .fa-trash-o {
   color: rgb(187, 18, 18);
 }
-.fa-eye {
+.fa-pencil-square-o{
   color: rgb(3, 26, 54);
+}
+.fa-eye {
+  color: rgb(48, 127, 138);
 }
 input[type="text"] {
   padding:5px;
@@ -67,6 +84,8 @@ input[type="text"] {
   outline:none;
   width:70%;
   cursor: text;
+  font-family: Agency FB;
+
 }
 
 .btn {
