@@ -86,6 +86,14 @@ class Transact {
     );
     return result.rows;
   }
+
+  static async selectTransactionById(id) {
+    const result = await db.query(
+      `Select id, createdon, type, accountnumber, amount, oldBalance, newBalance 
+      from transactions where id = ${id} `,
+    );
+    return result.rows[0];
+  }
 }
 
 export default Transact;

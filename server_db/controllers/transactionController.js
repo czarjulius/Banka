@@ -91,7 +91,29 @@ class TransactionController {
           error: 'No Transaction created on this account yet',
         });
       }
-      
+
+      return res.status(200).json({
+        status: 200,
+        data: result,
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: 500,
+        error: err.message,
+      });
+    }
+  }
+
+  static async getTransactionById(req, res) {
+    try {
+      const result = await Transaction.selectTransactionById(req.params.id);
+
+      if (!result) {
+        return res.status(404).json({
+          status: 400,
+          error: `Transaction with ID ${req.params.id} is not found`,
+        });
+      }
       return res.status(200).json({
         status: 200,
         data: result,
