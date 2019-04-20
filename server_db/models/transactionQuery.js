@@ -79,6 +79,13 @@ class Transact {
       });
     }
   }
+
+  static async specificAccountTransactions(accountnumber) {
+    const result = await db.query(
+      `SELECT * FROM transactions WHERE accountnumber = ${accountnumber}`,
+    );
+    return result.rows;
+  }
 }
 
 export default Transact;

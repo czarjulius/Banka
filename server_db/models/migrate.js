@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import pool from './db';
 
 const tableQuery = async () => {
-  try {  
+  try {
     const dropUserTable = await pool.query('DROP TABLE IF EXISTS users CASCADE;');
     const dropAcountTable = await pool.query('DROP TABLE IF EXISTS accounts CASCADE;');
     const dropTransactionTable = await pool.query('DROP TABLE IF EXISTS transactions CASCADE;');
@@ -37,7 +37,6 @@ const tableQuery = async () => {
       oldbalance float DEFAULT 0.00,
       newbalance float DEFAULT 0.00,
       createdOn DATE DEFAULT CURRENT_TIMESTAMP)`);
-
   } catch (err) {
     console.log(err.stack);
     return err.stack;
