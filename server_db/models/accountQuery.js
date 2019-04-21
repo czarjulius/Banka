@@ -12,6 +12,10 @@ const getAccountNumber = `select A.createdon, A.accountnumber, U.email, A.type, 
                           from accounts A 
                           inner join users U on A.owner = U.id where A.accountnumber = $1`;
 
+const getAccountWithEmail = `select A.createdon, A.accountnumber, A.type, 
+                            A.status, A.balance, U.email 
+                            from accounts A inner join users U on A.owner = U.id where U.email = $1`;
+
 
 export {
   createAccount,
@@ -19,4 +23,5 @@ export {
   updateAccountStatus,
   deleteAccount,
   getAccountNumber,
+  getAccountWithEmail,
 };
