@@ -1,9 +1,8 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable consistent-return */
-class ValidateAccType {
-  static validateType(request, response, next) {
+class ValidateTranType {
+  static validateTran(request, response, next) {
     const { type } = request.body;
-
     if (!type) {
       return response.status(400).json({
         status: 400,
@@ -16,20 +15,22 @@ class ValidateAccType {
         error: 'Spaces are not allowed',
       });
     }
+
     if (!isNaN(type)) {
       return response.status(400).json({
         status: 400,
-        error: 'Account type must be letters',
+        error: 'Transaction type must be letters',
       });
     }
-    if (!(type.toLowerCase() === 'savings' || type.toLowerCase() === 'current')) {
+    if (!(type.toLowerCase() === 'credit' || type.toLowerCase() === 'debit')) {
       return response.status(400).json({
         status: 400,
-        error: 'Account type must be savings or current',
+        error: 'Transaction type must be credit or debit',
       });
     }
+    
     next();
   }
 }
 
-export default ValidateAccType;
+export default ValidateTranType;

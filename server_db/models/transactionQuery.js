@@ -2,7 +2,7 @@ import db from './db';
 class Transact {
   static async credit(res, transactionDetails) {
     const {
-      transactionType, accountnumber, cashier, amount,
+      type, accountnumber, cashier, amount,
     } = transactionDetails;
     try {
       const account = await db.query(
@@ -24,7 +24,7 @@ class Transact {
               ($1, $2, $3, $4, $5, $6)
           RETURNING *`,
         [
-          transactionType,
+          type,
           accountnumber,
           cashier,
           amount,
@@ -42,7 +42,7 @@ class Transact {
 
   static async debit(res, transactionDetails) {
     const {
-      transactionType, accountnumber, cashier, amount,
+      type, accountnumber, cashier, amount,
     } = transactionDetails;
     try {
       const account = await db.query(
@@ -50,6 +50,13 @@ class Transact {
       );
       const oldbalance = account.rows[0].balance;
       const newbalance = parseFloat(oldbalance) - parseFloat(amount);
+      
+      if (oldbalance < amount) {
+        return res.status(400).json({
+          status: 400,
+          error: 'You have insufficent balance',
+        });
+      }
 
       await db.query(
         `UPDATE accounts SET balance = $1 WHERE accountnumber = ${accountnumber}`,
@@ -57,14 +64,14 @@ class Transact {
           newbalance,
         ],
       );
-      return db.query(
+      return await db.query(
         `INSERT INTO
               transactions(type, accountnumber, cashier, amount, oldbalance, newbalance)
           VALUES
               ($1, $2, $3, $4, $5, $6)
           RETURNING *`,
         [
-          transactionType,
+          type,
           accountnumber,
           cashier,
           amount,

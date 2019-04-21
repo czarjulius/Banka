@@ -4,6 +4,7 @@ import {
   createAccount, accountDetails,
   updateAccountStatus, deleteAccount, 
   getAccountNumber, getAccountWithEmail,
+  allAccountsByStatus, allaccounts,
 } from '../models/accountQuery';
 
 import db from '../models/db';
@@ -101,8 +102,8 @@ class AccountController {
       }
       rows = await db.query(deleteAccount, [accountNumber]);
 
-      res.status(200).json({
-        status: 200,
+      res.status(203).json({
+        status: 203,
         message: 'Account has been deleted successfully',
       });
     } catch (error) {
@@ -147,6 +148,52 @@ class AccountController {
         return res.status(404).json({
           status: 400,
           error: 'This user is yet to create an account',
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        data: result.rows,
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: 500,
+        error: err.message,
+      });
+    }
+  }
+
+  static async getAllAccounts(req, res) {
+    try {
+      const { status } = req.query;
+      
+      if (status && (status.toLowerCase() !== 'active' || status.toLowerCase() !== 'dormant')) {
+        return res.status(404).json({
+          status: 404,
+          error: 'Status must be active or dormant',
+        });
+      }
+      // when status is passed 
+      if (status && (status.toLowerCase() === 'active' || status.toLowerCase() === 'dormant')) {
+        const result = await db.query(allAccountsByStatus, [status.toLowerCase()]);
+  
+        if (result.rowCount < 1) {
+          return res.status(404).json({
+            status: 400,
+            error: 'No result to display yet',
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          data: result.rows,
+        });
+      }
+
+      // when getting all accounts
+      const result = await db.query(allaccounts);
+      if (result.rowCount < 1) {
+        return res.status(404).json({
+          status: 404,
+          error: 'no account created yet',
         });
       }
       return res.status(200).json({
