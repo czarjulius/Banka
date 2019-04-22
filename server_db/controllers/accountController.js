@@ -1,7 +1,10 @@
+/* eslint-disable no-trailing-spaces */
 /* eslint-disable consistent-return */
 import {
-  createAccount, accountDetails, updateAccountStatus, deleteAccount,
+  createAccount, accountDetails,
+  updateAccountStatus, deleteAccount,
 } from '../models/accountQuery';
+
 import db from '../models/db';
 /**
  * @description Defines the actions for Account endpoints
@@ -21,7 +24,7 @@ class AccountController {
       const {
         id: userId, firstname, lastname, email,
       } = req.authUser;
-      const accountNumber = Math.random().toString().slice(2, 12);
+      const accountNumber = Math.floor(1000000000 + Math.random() * 9000000000);
 
       const values = [accountNumber, userId, type, amount];
       const result = await db.query(createAccount, values);

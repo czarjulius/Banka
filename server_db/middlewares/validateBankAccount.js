@@ -1,27 +1,35 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable consistent-return */
-import { check, validationResult } from 'express-validator/check';
+class ValidateAccType {
+  static validateType(request, response, next) {
+    const { type } = request.body;
 
-const validateAccount = [
-  check('type')
-    .not().isEmpty()
-    .withMessage('Account type is required')
-    .matches(/^[a-zA-Z]+$/i)
-    .withMessage('Account type must contain only alphabets')
-    .matches(/^\S{3,}$/)
-    .withMessage('Account type cannot contain whitespaces')
-    .isIn(['savings', 'current', 'SAVINGS', 'CURRENT'])
-    .withMessage('only savings or current account types are allowed')
-    .trim(),
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
+    if (!type) {
+      return response.status(400).json({
         status: 400,
-        error: errors.array().map(i => i.msg),
+        error: 'Type is required',
       });
     }
+    if (!type.match(/[^\s-]/)) {
+      return response.status(400).json({
+        status: 400,
+        error: 'Spaces are not allowed',
+      });
+    }
+    if (!isNaN(type)) {
+      return response.status(400).json({
+        status: 400,
+        error: 'Account type must be letters',
+      });
+    }
+    // if ((type.toLowerCase() !== 'savings') || (type.toLowerCase() !== 'current')) {
+    //   return response.status(400).json({
+    //     status: 400,
+    //     error: 'Account type must be savings or current',
+    //   });
+    // }
     next();
-  },
-];
+  }
+}
 
-export default validateAccount;
+export default ValidateAccType;
