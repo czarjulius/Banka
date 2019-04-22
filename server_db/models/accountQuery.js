@@ -8,9 +8,15 @@ const updateAccountStatus = 'UPDATE accounts SET status = $1 WHERE accountNumber
 
 const deleteAccount = 'DELETE from accounts where accountNumber = $1';
 
+const getAccountNumber = `select A.createdon, A.accountnumber, U.email, A.type, A.status, A.balance
+                          from accounts A 
+                          inner join users U on A.owner = U.id where A.accountnumber = $1`;
+
+
 export {
   createAccount,
   accountDetails,
   updateAccountStatus,
   deleteAccount,
+  getAccountNumber,
 };

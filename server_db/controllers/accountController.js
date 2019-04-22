@@ -2,7 +2,7 @@
 /* eslint-disable consistent-return */
 import {
   createAccount, accountDetails,
-  updateAccountStatus, deleteAccount,
+  updateAccountStatus, deleteAccount, getAccountNumber,
 } from '../models/accountQuery';
 
 import db from '../models/db';
@@ -108,6 +108,30 @@ class AccountController {
       return res.status(500).json({
         status: 500,
         error: error.message,
+      });
+    }
+  }
+
+  static async getByAccountNumber(req, res) {
+    try {
+      const { accountNumber } = req.params;
+
+      const result = await db.query(getAccountNumber, [accountNumber]);
+      if (result.rowCount < 1) {
+        return res.status(404).json({
+          status: 404,
+          error: 'Account not found',
+        });
+      }
+
+      return res.status(200).json({
+        status: 200,
+        data: result.rows[0],
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: 500,
+        error: err.message,
       });
     }
   }

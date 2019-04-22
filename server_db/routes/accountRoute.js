@@ -15,4 +15,6 @@ router.patch('/account/:accountNumber', auth, validateAccountNumber,
 router.delete('/accounts/:accountNumber', auth, validateAccountNumber,
   role.admin, accountController.deleteAccount);
 
+router.get('/accounts/:accountNumber', auth, validateAccountNumber, accountController.getByAccountNumber);
+
 export default router;
