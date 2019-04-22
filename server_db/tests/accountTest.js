@@ -112,28 +112,6 @@ describe('tests for Account controller', () => {
         });
     });
   });
-  describe('/DELETE  account by account Number', () => {
-    it('should delete a specific account detail', (done) => {
-      api.delete(`/api/v1/accounts/${accountNumber}`)
-        .set('x-access-token', token)
-        .end((err, res) => {
-          expect(res.status).to.equal(203);
-          expect(res.body).to.have.property('status');
-          expect(res.body.status).to.equal(203);
-          expect(res.body.message).to.equal('Account has been deleted successfully');
-          done();
-        });
-    });
-    it('should fail to delte accounts when the number is not correct', (done) => {
-      api.delete(`/api/v1/accounts/${accountNumber}1`)
-        .set('x-access-token', token)
-        .end((err, res) => {
-          expect(res.status).to.equal(404);
-          expect(res.body.error).to.equal('Account not found');
-          done();
-        });
-    });
-  });
 
   describe('/GET account by email', () => {
     it('should get a specific account detail by email', (done) => {
@@ -190,6 +168,30 @@ describe('tests for Account controller', () => {
           expect(res.body).to.have.property('status');
           expect(res.body.status).to.equal(200);
           expect(res.body).to.have.property('data');
+          done();
+        });
+    });
+  });
+
+  
+  describe('/DELETE  account by account Number', () => {
+    it('should delete a specific account detail', (done) => {
+      api.delete(`/api/v1/accounts/${accountNumber}`)
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(203);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(203);
+          expect(res.body.message).to.equal('Account has been deleted successfully');
+          done();
+        });
+    });
+    it('should fail to delte accounts when the number is not correct', (done) => {
+      api.delete(`/api/v1/accounts/${accountNumber}1`)
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.error).to.equal('Account not found');
           done();
         });
     });

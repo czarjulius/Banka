@@ -67,6 +67,68 @@ describe('tests for Transaction controller', () => {
       });
   });
 
+  describe('/POST credit account', () => {
+    it('should credit an account', (done) => {
+      const transact = {
+        amount: 100,
+      };
+      api.post(`/api/v1/transactions/${accountNumber}/credit`)
+        .set('x-access-token', token)
+        .send(transact)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(200);
+          expect(res.body).to.have.property('data');
+          done();
+        });
+    });
+    it('should fail to credit an account when account number is incorrect', (done) => {
+      const account = {
+        amount: 100,
+      };
+      api.post(`/api/v1/transactions/${accountNumber}3/credit`)
+        .set('x-access-token', token)
+        .send(account)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.error).to.equal('Account not found');
+          done();
+        });
+    });
+  });
+
+  describe('/POST debit Transaction', () => {
+    it('should debit an account', (done) => {
+      const transact = {
+        amount: 100,
+      };
+      api.post(`/api/v1/transactions/${accountNumber}/debit`)
+        .set('x-access-token', token)
+        .send(transact)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(200);
+          expect(res.body).to.have.property('data');
+          done();
+        });
+    });
+    it('should fail to debit an account when account number is incorrect', (done) => {
+      const account = {
+        amount: 100,
+      };
+      api.post(`/api/v1/transactions/${accountNumber}3/debit`)
+        .set('x-access-token', token)
+        .send(account)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.error).to.equal('Account not found');
+          done();
+        });
+    });
+  });
+
   describe('/GET  a specific transaction by account Number', () => {
     it('should fail to fetch transaction when the number is not correct', (done) => {
       api.get(`/api/v1/accounts/${accountNumber}1/transactions`)
