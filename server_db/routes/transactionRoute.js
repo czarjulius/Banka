@@ -5,7 +5,6 @@ import ValidateAmount from '../middlewares/validateAmount';
 import validateAccountNumber from '../middlewares/validateAccountNumber';
 import transactionController from '../controllers/transactionController';
 import ValidateId from '../middlewares/validateId';
-import ValidateTranType from '../middlewares/validateTransactionType';
 
 const router = express.Router();
 

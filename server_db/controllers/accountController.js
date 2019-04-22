@@ -6,6 +6,7 @@ import {
   getAccountNumber, getAccountWithEmail,
   allAccountsByStatus, allaccounts,
 } from '../models/accountQuery';
+import { userDetails } from '../models/userQuery';
 
 import db from '../models/db';
 /**
@@ -142,6 +143,13 @@ class AccountController {
     try {
       const { email } = req.params;
 
+      const userEmail = await db.query(userDetails, [email]);
+      if (!userEmail.rows.length) {
+        return res.status(400).json({
+          status: 400,
+          error: `There is no user with ${email}`,
+        });
+      }
       const result = await db.query(getAccountWithEmail, [email]);
       
       if (result.rowCount < 1) {
