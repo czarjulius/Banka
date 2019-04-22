@@ -180,4 +180,18 @@ describe('tests for Account controller', () => {
         });
     });
   });
+
+  describe('/GET all accounts', () => {
+    it('should get all accounts', (done) => {
+      api.get('/api/v1/accounts')
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(200);
+          expect(res.body).to.have.property('data');
+          done();
+        });
+    });
+  });
 });
