@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-undef */
 /* eslint-disable prefer-destructuring */
 import { expect } from 'chai';
@@ -10,6 +11,8 @@ import db from '../models/db';
 
 const api = supertest(server);
 let token;
+let accountNumber;
+let email;
 
 
 async function createAdmin() {
@@ -49,12 +52,14 @@ describe('tests for Account controller', () => {
     it('should create a new account', (done) => {
       const account = {
         type: 'current',
-        passportUrl: 'www.user.png',
+        amount: 100,
       };
       api.post('/api/v1/accounts')
         .set('x-access-token', token)
         .send(account)
         .end((err, res) => {
+          accountNumber = parseInt(res.body.data.accountNumber, 10);
+          email = res.body.data.email;
           expect(res.status).to.equal(201);
           expect(res.body).to.have.property('status');
           expect(res.body.status).to.equal(201);
@@ -62,7 +67,7 @@ describe('tests for Account controller', () => {
           done();
         });
     });
-    it('should fail to create a new account', (done) => {
+    it('should fail to create a new account if account type is not provided', (done) => {
       const account = {
         amount: 100,
       };
@@ -72,6 +77,59 @@ describe('tests for Account controller', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body.error).to.equal('Type is required');
+          done();
+        });
+    });
+  });
+
+  describe('/PATCH  account', () => {
+    it('should change account status', (done) => {
+      const account = {
+        status: 'dormant',
+      };
+      api.patch(`/api/v1/account/${accountNumber}`)
+        .set('x-access-token', token)
+        .send(account)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(200);
+          expect(res.body).to.have.property('data');
+          done();
+        });
+    });
+    it('should fail to update status if input is not active or dormant', (done) => {
+      const account = {
+        status: 'acteiveeee',
+      };
+      api.patch(`/api/v1/account/${accountNumber}`)
+        .set('x-access-token', token)
+        .send(account)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('Account status must be active or dormant');
+          done();
+        });
+    });
+  });
+  describe('/DELETE  account by account Number', () => {
+    it('should delete a specific account detail', (done) => {
+      api.delete(`/api/v1/accounts/${accountNumber}`)
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(203);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(203);
+          expect(res.body.message).to.equal('Account has been deleted successfully');
+          done();
+        });
+    });
+    it('should fail to delte accounts when the number is not correct', (done) => {
+      api.delete(`/api/v1/accounts/${accountNumber}1`)
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.error).to.equal('Account not found');
           done();
         });
     });

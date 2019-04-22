@@ -1,4 +1,5 @@
 /* eslint-disable no-trailing-spaces */
+import EmailController from './emailController';
 import Transaction from '../models/transactionQuery';
 import { accountDetails } from '../models/accountQuery';
 import db from '../models/db';
@@ -31,7 +32,7 @@ class TransactionController {
       }
 
       const transaction = await Transaction.credit(res, req.body);
-
+      
       return res.status(200).json({
         status: 200,
         data: transaction.rows,
@@ -67,6 +68,9 @@ class TransactionController {
       }
 
       const transaction = await Transaction.debit(res, req.body);
+      // if (transaction) {
+      //   EmailController.sendEmail('juliusczar.jc@gmail.com');
+      // }
       return res.status(200).json({
         status: 200,
         data: transaction.rows,
@@ -85,9 +89,11 @@ class TransactionController {
   
   static async getSpecificAccountTransactions(req, res) {
     try {
-      const result = await Transaction.specificAccountTransactions(req.params.accountNumber);
+      const { accountNumber } = req.params;
       
-      if (result.rowCount < 1) {
+      const result = await Transaction.specificAccountTransactions(accountNumber);
+      
+      if (!result) {
         return res.status(404).json({
           status: 404,
           error: 'No Transaction created on this account yet',
@@ -96,7 +102,7 @@ class TransactionController {
 
       return res.status(200).json({
         status: 200,
-        data: result,
+        data: result.rows,
       });
     } catch (err) {
       return res.status(500).json({

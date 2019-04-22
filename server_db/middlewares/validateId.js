@@ -12,7 +12,7 @@ const validateId = (req, res, next) => {
   if (isNaN(id)) {
     return res.status(400).json({
       status: 400,
-      error: 'ID must be a number ',
+      error: 'ID must be a number',
     });
   }
 
