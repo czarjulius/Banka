@@ -157,4 +157,27 @@ describe('tests for Account controller', () => {
         });
     });
   });
+
+  describe('/GET  account by account Number', () => {
+    it('should get a specific account detail', (done) => {
+      api.get(`/api/v1/accounts/${accountNumber}`)
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(200);
+          expect(res.body).to.have.property('data');
+          done();
+        });
+    });
+    it('should fail to fetch accounts when the number is not correct', (done) => {
+      api.get(`/api/v1/accounts/${accountNumber}1`)
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.error).to.equal('Account not found');
+          done();
+        });
+    });
+  });
 });
