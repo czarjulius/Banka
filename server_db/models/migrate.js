@@ -38,7 +38,8 @@ const tableQuery = async () => {
       newbalance float DEFAULT 0.00,
       createdOn DATE DEFAULT CURRENT_TIMESTAMP)`);
 
-    const admin = await pool.query('INSERT into users(firstName, lastName, email, password, phoneNumber, type, isAdmin) VALUES(\'admin\', \'admin\', \'admin@gmail.com\', \'admin123\', \'08135778669\', \'staff\', \'true\');');
+    const values = ['admin', 'admin', 'admin@gmail.com', bcrypt.hashSync('admin123', 10), '08135778669', 'staff', 'true'];
+    const admin = await pool.query('INSERT into users(firstName, lastName, email, password, phoneNumber, type, isAdmin)VALUES($1,$2,$3,$4,$5,$6,$7)', values);
   } catch (err) {
     console.log(err.stack);
     return err.stack;
