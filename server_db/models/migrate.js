@@ -37,6 +37,8 @@ const tableQuery = async () => {
       oldbalance float DEFAULT 0.00,
       newbalance float DEFAULT 0.00,
       createdOn DATE DEFAULT CURRENT_TIMESTAMP)`);
+
+    const admin = await pool.query('INSERT into users(firstName, lastName, email, password, phoneNumber, type, isAdmin) VALUES(\'admin\', \'admin\', \'admin@gmail.com\', \'admin123\', \'08135778669\', \'staff\', \'true\');');
   } catch (err) {
     console.log(err.stack);
     return err.stack;
