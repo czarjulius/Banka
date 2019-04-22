@@ -66,6 +66,57 @@ describe('tests for user controller', async () => {
           done();
         });
     });
+
+    it('should not create a new user when the email is not provided', (done) => {
+      const user = {
+        firstName: 'Julius',
+        lastName: 'Ngwu',
+        password: '123def',
+        phoneNumber: '09088776654',
+      };
+      api.post('/api/v1/auth/signup')
+        .send(user)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('email is required');
+          expect(res.body.status).to.equal(400);
+          done();
+        });
+    });
+
+    it('should not create a new user when the password is not provided', (done) => {
+      const user = {
+        firstName: 'Julius',
+        lastName: 'Ngwu',
+        email: 'jjude@gmail.com',
+        phoneNumber: '09088776654',
+      };
+      api.post('/api/v1/auth/signup')
+        .send(user)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('password is required');
+          expect(res.body.status).to.equal(400);
+          done();
+        });
+    });
+
+    it('should not create a new user when the phone number is not provided', (done) => {
+      const user = {
+        firstName: 'Julius',
+        lastName: 'Ngwu',
+        email: 'jjude@gmail.com',
+        password: '123def',
+      };
+      api.post('/api/v1/auth/signup')
+        .send(user)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('phoneNumber is required');
+          expect(res.body.status).to.equal(400);
+          done();
+        });
+    });
   });
 });
 
@@ -103,4 +154,32 @@ describe('/POST Login user', () => {
         done();
       });
   });
+  it('should not login user if the password was not provided', (done) => {
+    const user = {
+      email: 'julius@gmail.com',
+    };
+    api.post('/api/v1/auth/signin')
+      .send(user)
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body).to.have.property('error');
+        expect(res.body.error).to.equal('password is required to login');
+        done();
+      });
+  });
+
+  it('should not login user if the email was not provided', (done) => {
+    const user = {
+      email: 'julius@gmail.com',
+    };
+    api.post('/api/v1/auth/signin')
+      .send(user)
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body).to.have.property('error');
+        expect(res.body.error).to.equal('password is required to login');
+        done();
+      });
+  });
 });
+

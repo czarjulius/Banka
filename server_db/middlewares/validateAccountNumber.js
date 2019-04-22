@@ -12,7 +12,7 @@ const validateAccountNumber = (req, res, next) => {
   if (accountNumber.toString().replace(/\s/g, '').length === 0) {
     return res.status(400).json({
       status: 400,
-      error: 'Account Number must not empty or white-space ',
+      error: 'Account Number must not empty or white-space',
     });
   }
 
@@ -20,7 +20,7 @@ const validateAccountNumber = (req, res, next) => {
   if (isNaN(accountNumber)) {
     return res.status(400).json({
       status: 400,
-      error: 'Account Number must be a number ',
+      error: 'Account Number must be a number',
     });
   }
 
@@ -28,7 +28,7 @@ const validateAccountNumber = (req, res, next) => {
   if ((accountNumber % 1) !== 0) {
     return res.status(400).json({
       status: 400,
-      error: 'Account Number must be a positive integer ',
+      error: 'Account Number must be a whole integer',
     });
   }
   next();

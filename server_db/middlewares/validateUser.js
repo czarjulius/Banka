@@ -2,7 +2,7 @@
 class ValidateUser {
   static validateSignup(request, response, next) {
     const {
-      firstName, lastName, email, password,
+      firstName, lastName, email, password, phoneNumber,
     } = request.body;
     const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!firstName) {
@@ -75,6 +75,36 @@ class ValidateUser {
       return response.status(400).json({
         status: 400,
         error: 'password is required',
+      });
+    }
+
+    if (!phoneNumber) {
+      return response.status(400).json({
+        status: 400,
+        error: 'phoneNumber is required',
+      });
+    }
+
+    if (phoneNumber.toString().replace(/\s/g, '').length === 0) {
+      return response.status(400).json({
+        status: 400,
+        error: 'Phone Number must not empty or white-space ',
+      });
+    }
+  
+    /* Check if phhone is a number */
+    if (isNaN(phoneNumber)) {
+      return response.status(400).json({
+        status: 400,
+        error: 'Phone Number must be a number ',
+      });
+    }
+  
+    /* Check if phone is a whole number */
+    if ((phoneNumber % 1) !== 0) {
+      return response.status(400).json({
+        status: 400,
+        error: 'Phone Number must be a positive integer ',
       });
     }
     next();

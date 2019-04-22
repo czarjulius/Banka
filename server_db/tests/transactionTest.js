@@ -127,6 +127,33 @@ describe('tests for Transaction controller', () => {
           done();
         });
     });
+
+    it('should fail to debit an account when account number is not a number ', (done) => {
+      const account = {
+        amount: 100,
+      };
+      api.post(`/api/v1/transactions/${accountNumber}ju3/debit`)
+        .set('x-access-token', token)
+        .send(account)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('Account Number must be a number');
+          done();
+        });
+    });
+    it('should fail to debit an account when account number is contains white space', (done) => {
+      const account = {
+        amount: 100,
+      };
+      api.post(`/api/v1/transactions/${accountNumber}.3/debit`)
+        .set('x-access-token', token)
+        .send(account)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('Account Number must be a whole integer');
+          done();
+        });
+    });
   });
 
   describe('/GET  a specific transaction by account Number', () => {

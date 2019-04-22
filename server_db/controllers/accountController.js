@@ -115,6 +115,13 @@ class AccountController {
     }
   }
 
+   /**
+   * @description Get account detail by account number
+   * @static
+   * @param {integer} req - request
+   * @param {object} res - response
+   * @method getByAccountNumber
+   */
   static async getByAccountNumber(req, res) {
     try {
       const { accountNumber } = req.params;
@@ -139,6 +146,13 @@ class AccountController {
     }
   }
 
+  /**
+   * @description Get all accounts owned by this specific user
+   * @static
+   * @param {string} req - request
+   * @param {array} res - response
+   * @method getAccountByEmail
+   */
   static async getAccountByEmail(req, res) {
     try {
       const { email } = req.params;
@@ -170,11 +184,18 @@ class AccountController {
     }
   }
 
+  /**
+   * @description Get all accounts created
+   * @static
+   * @param {array} res - response
+   * @method getAllAccounts
+   */
   static async getAllAccounts(req, res) {
     try {
       const { status } = req.query;
       
-      if (status && (status.toLowerCase() !== 'active' || status.toLowerCase() !== 'dormant')) {
+      if (status && !(status.toLowerCase() === 'active' || status.toLowerCase() === 'dormant')) {
+        console.log(status);
         return res.status(404).json({
           status: 404,
           error: 'Status must be active or dormant',

@@ -1,7 +1,7 @@
 /* eslint-disable no-trailing-spaces */
 import EmailController from './emailController';
 import Transaction from '../models/transactionQuery';
-import { accountDetails } from '../models/accountQuery';
+import { accountDetails, emailParams } from '../models/accountQuery';
 import db from '../models/db';
 
 /**
@@ -32,6 +32,11 @@ class TransactionController {
       }
 
       const transaction = await Transaction.credit(res, req.body);
+      
+      if (transaction) {
+        const emailQuery = await db.query(emailParams, [req.params.accountNumber]);
+        EmailController.sendEmail(emailQuery.rows[0]);
+      }
       
       return res.status(200).json({
         status: 200,
@@ -67,10 +72,18 @@ class TransactionController {
         });
       }
 
+      if (rows[0].status === 'dormant') {
+        return res.status(400).json({
+          status: 404,
+          error: 'Sorry this account is dormant. Kindly visit the costumer services for account reactivation',
+        });
+      }
+
       const transaction = await Transaction.debit(res, req.body);
-      // if (transaction) {
-      //   EmailController.sendEmail('juliusczar.jc@gmail.com');
-      // }
+      if (transaction) {
+        const emailQuery = await db.query(emailParams, [req.params.accountNumber]);
+        EmailController.sendEmail(emailQuery.rows[0]);
+      }
       return res.status(200).json({
         status: 200,
         data: transaction.rows,
@@ -86,14 +99,14 @@ class TransactionController {
   * @return {Array} - The transactions that was carried under specified account number
    * @method getSpecificAccountTransactions
    */
-  
+
   static async getSpecificAccountTransactions(req, res) {
     try {
       const { accountNumber } = req.params;
       
       const result = await Transaction.specificAccountTransactions(accountNumber);
       
-      if (!result) {
+      if (!result.rows.length > 0) {
         return res.status(404).json({
           status: 404,
           error: 'No Transaction created on this account yet',
@@ -112,6 +125,13 @@ class TransactionController {
     }
   }
 
+  /**
+   * @description Get a particular transaction details by passing the transaction Id
+   * @static
+   * @param {integer} req - request
+   * @param {object} res - response
+   * @method getTransactionById
+   */
   static async getTransactionById(req, res) {
     try {
       const result = await Transaction.selectTransactionById(req.params.id);
