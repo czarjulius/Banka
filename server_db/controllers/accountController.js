@@ -2,7 +2,8 @@
 /* eslint-disable consistent-return */
 import {
   createAccount, accountDetails,
-  updateAccountStatus, deleteAccount, getAccountNumber,
+  updateAccountStatus, deleteAccount, 
+  getAccountNumber, getAccountWithEmail,
 } from '../models/accountQuery';
 
 import db from '../models/db';
@@ -127,6 +128,30 @@ class AccountController {
       return res.status(200).json({
         status: 200,
         data: result.rows[0],
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: 500,
+        error: err.message,
+      });
+    }
+  }
+
+  static async getAccountByEmail(req, res) {
+    try {
+      const { email } = req.params;
+
+      const result = await db.query(getAccountWithEmail, [email]);
+      
+      if (result.rowCount < 1) {
+        return res.status(404).json({
+          status: 400,
+          error: 'This user is yet to create an account',
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        data: result.rows,
       });
     } catch (err) {
       return res.status(500).json({

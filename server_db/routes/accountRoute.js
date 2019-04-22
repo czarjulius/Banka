@@ -4,6 +4,7 @@ import auth from '../middlewares/authentication';
 import role from '../middlewares/authorization';
 import ValidateAccType from '../middlewares/validateBankAccount';
 import validateAccountNumber from '../middlewares/validateAccountNumber';
+import ValidateEmail from '../middlewares/validateEmail';
 
 const router = express.Router();
 
@@ -16,5 +17,7 @@ router.delete('/accounts/:accountNumber', auth, validateAccountNumber,
   role.admin, accountController.deleteAccount);
 
 router.get('/accounts/:accountNumber', auth, validateAccountNumber, accountController.getByAccountNumber);
+
+router.get('/user/:email/accounts', auth, ValidateEmail, role.admin, accountController.getAccountByEmail);
 
 export default router;
