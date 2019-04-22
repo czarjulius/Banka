@@ -78,4 +78,28 @@ describe('tests for Transaction controller', () => {
         });
     });
   });
+
+  describe('/GET  a specific transaction by account ID', () => {
+    it('should get a specific transaction detail', (done) => {
+      api.get(`/api/v1/transactions/${id}`)
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(200);
+          expect(res.body).to.have.property('data');
+          done();
+        });
+    });
+
+    it('should fail to fetch transaction when the number is not correct', (done) => {
+      api.get(`/api/v1/transactions/${id}o`)
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('ID must be a number');
+          done();
+        });
+    });
+  });
 });
