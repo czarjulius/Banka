@@ -66,4 +66,16 @@ describe('tests for Transaction controller', () => {
         done();
       });
   });
+
+  describe('/GET  a specific transaction by account Number', () => {
+    it('should fail to fetch transaction when the number is not correct', (done) => {
+      api.get(`/api/v1/accounts/${accountNumber}1/transactions`)
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.error).to.equal('No Transaction created on this account yet');
+          done();
+        });
+    });
+  });
 });
