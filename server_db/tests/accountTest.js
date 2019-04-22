@@ -134,4 +134,27 @@ describe('tests for Account controller', () => {
         });
     });
   });
+
+  describe('/GET account by email', () => {
+    it('should get a specific account detail by email', (done) => {
+      api.get(`/api/v1/user/${email}/accounts`)
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(200);
+          expect(res.body).to.have.property('data');
+          done();
+        });
+    });
+    it('should fail to fetch specific account when the email is not correct', (done) => {
+      api.get(`/api/v1/user/${email}w/accounts`)
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal(`There is no user with ${email}w`);
+          done();
+        });
+    });
+  });
 });
