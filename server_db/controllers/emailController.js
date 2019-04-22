@@ -3,31 +3,48 @@ import emailer from '@sendgrid/mail';
 
 dotenv.config();
 
+/**
+ * @description Defines the actions for email sender
+ * @class TransactionEmail
+ */
 class TransactionEmail {
-  static async sendEmail(email) {
-    console.log(email);
+  /**
+   * @description sends email to the user which his details are contained in the parameter
+   * @static
+   * @param {object} req - request
+   * @param {boolean} res - response
+   * @method sendEmail
+   */
+  static async sendEmail(userInfo) {
+    const {
+      createdon,
+      accountnumber,
+      firstname,
+      amount,
+      balance,
+      type,
+      email,
+    } = userInfo;
 
     emailer.setApiKey(process.env.SENDGRID_API_KEY);
-    console.log('env', process.env.SENDGRID_API_KEY);
 
     const msg = {
       to: email,
       from: 'techranchsolutions@gmail.com',
       subject: 'Sending with SendGrid is Fun',
-      text: 'and easy to do anywhere, even with Node.js',
-      html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-      // templateId: 'd-2e7e1378de4b48548880f9e177ab6c96',
-      // dynamic_template_data: {
-      //   subject: 'Testing Templates',
-      //   name: 'Julius',
-      //   amount: '1200',
-      // },
+      templateId: 'd-2e7e1378de4b48548880f9e177ab6c96',
+      dynamic_template_data: {
+        subject: `Banka ${type} Alert`,
+        firstname,
+        amount,
+        balance,
+        accountnumber,
+        date: createdon,
+        type,
+      },
     };
-    console.log('msg', msg);
 
     const deliveredEmail = await emailer.send(msg);
-    console.log('deliveredEmail', deliveredEmail);
-
     if (deliveredEmail) {
       return true;
     }

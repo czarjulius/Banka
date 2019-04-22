@@ -23,6 +23,10 @@ const allAccountsByStatus = `select A.createdon, A.accountnumber, A.type, A.stat
 const allaccounts = `select A.createdon, A.accountnumber, A.type, A.status, 
                      A.balance, U.email from accounts A inner join users U on A.owner = U.id`;
 
+const emailParams = `select a.createdOn, a.accountNumber, u.firstname, t.amount, t.type, u.email,
+                      a.balance from accounts as a inner join transactions t 
+                      on a.accountnumber = t.accountnumber inner join users u 
+                      on a.owner = u.id where a.accountnumber = $1`;
 
 export {
   createAccount,
@@ -33,4 +37,5 @@ export {
   getAccountWithEmail,
   allAccountsByStatus,
   allaccounts,
+  emailParams,
 };
