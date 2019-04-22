@@ -19,15 +19,19 @@ class TransactionController {
     try {
       req.body.accountnumber = req.params.accountNumber;
       req.body.cashier = req.authUser.id;
+      req.body.type = 'credit';
 
       const { rows } = await db.query(accountDetails, [req.params.accountNumber]);
+
       if (!rows[0]) {
         return res.status(404).json({
           status: 404,
           error: 'Account not found',
         });
       }
+
       const transaction = await Transaction.credit(res, req.body);
+
       return res.status(200).json({
         status: 200,
         data: transaction.rows,
@@ -51,6 +55,7 @@ class TransactionController {
     try {
       req.body.accountnumber = req.params.accountNumber;
       req.body.cashier = req.authUser.id;
+      req.body.type = 'debit';
 
       const { rows } = await db.query(accountDetails, [req.params.accountNumber]);
 
@@ -63,14 +68,11 @@ class TransactionController {
 
       const transaction = await Transaction.debit(res, req.body);
       return res.status(200).json({
-        status: transaction.rows[0].newbalance < req.body.amount ? 400 : 200,
-        data: transaction.rows[0].newbalance < req.body.amount ? 'insufficent fund' : transaction.rows,
+        status: 200,
+        data: transaction.rows,
       });
     } catch (err) {
-      return res.status(500).json({
-        status: 500,
-        error: err.message,
-      });
+      return err.message;
     }
   }
   /**

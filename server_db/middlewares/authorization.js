@@ -4,8 +4,7 @@
  * @class Role
  */
 class Role {
-
-    /* When only admin has the right to carryout the function */
+  /* When only admin has the right to carryout the function */
   static admin(req, res, next) {
     if (req.authUser.isAdmin === false) {
       return res.status(403).json({
@@ -16,7 +15,7 @@ class Role {
     next();
   }
 
-    /* When only staff has the right to carryout the function */
+  /* When only staff has the right to carryout the function */
   static isStaff(req, res, next) {
     if (req.authUser.type !== 'staff') {
       return res.status(403).json({

@@ -16,6 +16,13 @@ const getAccountWithEmail = `select A.createdon, A.accountnumber, A.type,
                             A.status, A.balance, U.email 
                             from accounts A inner join users U on A.owner = U.id where U.email = $1`;
 
+const allAccountsByStatus = `select A.createdon, A.accountnumber, A.type, A.status, 
+                             A.balance, U.email from accounts A inner join users U on A.owner = U.id 
+                             where A.status = $1`;
+
+const allaccounts = `select A.createdon, A.accountnumber, A.type, A.status, 
+                     A.balance, U.email from accounts A inner join users U on A.owner = U.id`;
+
 
 export {
   createAccount,
@@ -24,4 +31,6 @@ export {
   deleteAccount,
   getAccountNumber,
   getAccountWithEmail,
+  allAccountsByStatus,
+  allaccounts,
 };

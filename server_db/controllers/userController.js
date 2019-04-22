@@ -23,6 +23,13 @@ class User {
         firstName, lastName, email, phoneNumber,
       } = req.body;
 
+      const userEmail = await db.query(userDetails, [email]);
+      if (userEmail.rows.length) {
+        return res.status(409).json({
+          status: 409,
+          error: 'Email is already registered',
+        });
+      }
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(req.body.password, salt);
 

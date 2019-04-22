@@ -17,7 +17,7 @@ const tableQuery = async () => {
       phoneNumber VARCHAR(15) NOT NULL,
       type VARCHAR(15) DEFAULT 'user',
       isAdmin BOOLEAN DEFAULT FALSE,
-      registeredOn DATE DEFAULT CURRENT_TIMESTAMP)`);
+      registeredOn DATE DEFAULT CURRENT_TIMESTAMP )`);
 
     const accountTable = await pool.query(`CREATE TABLE IF NOT EXISTS accounts(
       id SERIAL PRIMARY KEY,

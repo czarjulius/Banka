@@ -64,17 +64,14 @@ describe('tests for Account controller', () => {
     });
     it('should fail to create a new account', (done) => {
       const account = {
-        amount: 60.54,
+        amount: 100,
       };
       api.post('/api/v1/accounts')
         .set('x-access-token', token)
         .send(account)
         .end((err, res) => {
           expect(res.status).to.equal(400);
-          expect(res.body.error[0]).to.equal('Account type is required');
-          expect(res.body.error[1]).to.equal('Account type must contain only alphabets');
-          expect(res.body.error[2]).to.equal('Account type cannot contain whitespaces');
-          expect(res.body.error[3]).to.equal('only savings or current account types are allowed');
+          expect(res.body.error).to.equal('Type is required');
           done();
         });
     });
