@@ -1,7 +1,9 @@
 import '@babel/polyfill';
 import express from 'express';
 import bodyParser from 'body-parser';
+import swaggerUi from 'swagger-ui-express';
 import router from './server_db/routes/index';
+import swaggerdoc from './swagger';
 
 const app = express();
 
@@ -9,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(router);
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerdoc));
 
 app.get('/', (req, res) => {
   res.send(' Julius Welcome\'s you to Banka');
