@@ -194,7 +194,8 @@ class AccountController {
     try {
       const { status } = req.query;
       
-      if (status && (status.toLowerCase() !== 'active' || status.toLowerCase() !== 'dormant')) {
+      if (status && !(status.toLowerCase() === 'active' || status.toLowerCase() === 'dormant')) {
+        console.log(status);
         return res.status(404).json({
           status: 404,
           error: 'Status must be active or dormant',

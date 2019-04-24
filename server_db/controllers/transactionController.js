@@ -72,6 +72,13 @@ class TransactionController {
         });
       }
 
+      if (rows[0].status === 'dormant') {
+        return res.status(400).json({
+          status: 404,
+          error: 'Sorry this account is dormant. Kindly visit the costumer services for account reactivation',
+        });
+      }
+
       const transaction = await Transaction.debit(res, req.body);
       if (transaction) {
         const emailQuery = await db.query(emailParams, [req.params.accountNumber]);
