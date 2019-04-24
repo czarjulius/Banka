@@ -172,7 +172,7 @@ describe('tests for Transaction controller', () => {
     it('should get a specific transaction detail', (done) => {
       api.get(`/api/v1/transactions/${id}`)
         .set('x-access-token', token)
-        .end((err, res) => {
+        .end((err, res) => {          
           expect(res.status).to.equal(200);
           expect(res.body).to.have.property('status');
           expect(res.body.status).to.equal(200);

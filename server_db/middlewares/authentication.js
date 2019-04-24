@@ -11,8 +11,8 @@ dotenv.config();
     * @return {object} res
     *
    */
-const auth = async (req, res, next) => {
-  const token = req.header('x-access-token') || req.body.token;
+const authenticate = async (req, res, next) => {
+  const token = req.header('x-access-token') || req.body.token || req.query.token;
   if (!token) {
     return res.status(401).json({
       status: 401,
@@ -22,7 +22,8 @@ const auth = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     const user = await AuthenticationHelper.getAuthUser(decoded.id);
-    req.authUser = user;
+    req.authUser = user;   
+     
     next();
   } catch (error) {
     res.status(401).json({
@@ -32,4 +33,4 @@ const auth = async (req, res, next) => {
   }
 };
 
-export default auth;
+export default authenticate;
