@@ -1,0 +1,602 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Banka is a light-weight core banking application that powers banking operations like account creation, customer deposit and withdrawals. This app is meant to support a single bank, where users can signup and create bank accounts online, but must visit the branch to withdraw or deposit money.",
+    "version": "1.0.0",
+    "title": "Banka"
+  },
+  "servers": [
+    {
+      "url": "julius-banka.herokuapp.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": ""
+    },
+    {
+      "name": "Account",
+      "description": ""
+    },
+    {
+      "name": "Transaction",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Register a new user to the app",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required parameter"
+          },
+          "500": {
+            "description": "server Error"
+          }
+        }
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Existing user use this to gain access into the system",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successfully operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required parameter"
+          },
+          "500": {
+            "description": "server Error"
+          }
+        }
+      }
+    },
+    "/accounts": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Creates a new bank account",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required parameter"
+          },
+          "500": {
+            "description": "server Error"
+          }
+        }
+      }
+    },
+    "/account/{accountNumber}": {
+      "patch": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Updates the bank account status",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "access denied, no token provided"
+          },
+          "404": {
+            "description": "account not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Delete bank account information by account number",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "203": {
+            "description": "Account successfully deleted"
+          },
+          "400": {
+            "description": "Account not found"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Find Bank account by account number",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "access denied, no token provided"
+          },
+          "404": {
+            "description": "Account not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/user/{email}/accounts": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Find Bank account by user email",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "User email of Bank accounts to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "access denied, no token provided"
+          },
+          "404": {
+            "description": "no account created yet by {email}"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/transactions/{accountNumber}/credit": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Create a new credit transaction in the system",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Returns the new created transaction",
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required parameter"
+          },
+          "500": {
+            "description": "server Error"
+          }
+        }
+      }
+    },
+    "/transactions/{accountNumber}/debit": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Create a new debit transaction in the system",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Returns the new debited transaction",
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required parameter"
+          },
+          "500": {
+            "description": "server Error"
+          }
+        }
+      }
+    },
+    "/accounts/{accountNumber}/transactions": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Find transaction by account number",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Returns a single transaction detail",
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "path",
+            "description": "Account Number of Transaction detail to return",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "access denied, no token provided"
+          },
+          "404": {
+            "description": "Transaction not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/transactions/{id}": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Find  transaction by ID",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Returns a single transaction",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of transaction to return",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "access denied, no token provided"
+          },
+          "404": {
+            "description": "Transaction not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "isAdmin": {
+            "type": "boolean"
+          },
+          "registeredOn": {
+            "type": "string"
+          }
+        }
+      },
+      "Account": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "createdon": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "number"
+          }
+        }
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "createdon": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "accountnumber": {
+            "type": "integer"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "oldbalance": {
+            "type": "number"
+          },
+          "newbalance": {
+            "type": "number"
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
