@@ -91,8 +91,8 @@ describe('tests for Transaction controller', () => {
         .set('x-access-token', token)
         .send(account)
         .end((err, res) => {
-          expect(res.status).to.equal(404);
-          expect(res.body.error).to.equal('Account not found');
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('Account Number must be 10 digits');
           done();
         });
     });
@@ -122,8 +122,8 @@ describe('tests for Transaction controller', () => {
         .set('x-access-token', token)
         .send(account)
         .end((err, res) => {
-          expect(res.status).to.equal(404);
-          expect(res.body.error).to.equal('Account not found');
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('Account Number must be 10 digits');
           done();
         });
     });
@@ -161,8 +161,8 @@ describe('tests for Transaction controller', () => {
       api.get(`/api/v1/accounts/${accountNumber}1/transactions`)
         .set('x-access-token', token)
         .end((err, res) => {
-          expect(res.status).to.equal(404);
-          expect(res.body.error).to.equal('No Transaction created on this account yet');
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('Account Number must be 10 digits');
           done();
         });
     });
