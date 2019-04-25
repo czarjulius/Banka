@@ -180,8 +180,8 @@ describe('tests for Account controller', () => {
       api.get(`/api/v1/accounts/${accountNumber}1`)
         .set('x-access-token', token)
         .end((err, res) => {
-          expect(res.status).to.equal(404);
-          expect(res.body.error).to.equal('Account not found');
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('Account Number must be 10 digits');
           done();
         });
     });
@@ -218,8 +218,8 @@ describe('tests for Account controller', () => {
       api.delete(`/api/v1/accounts/${accountNumber}1`)
         .set('x-access-token', token)
         .end((err, res) => {
-          expect(res.status).to.equal(404);
-          expect(res.body.error).to.equal('Account not found');
+          expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('Account Number must be 10 digits');
           done();
         });
     });
