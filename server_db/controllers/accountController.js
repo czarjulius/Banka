@@ -131,6 +131,13 @@ class AccountController {
 
       const result = await db.query(getAccountNumber, [accountNumber]);
 
+      if (result.rowCount < 1) {
+        return res.status(404).json({
+          status: 404,
+          error: 'Account not found',
+        });
+      }
+
       const { id, type } = req.authUser;
 
       if (type === 'user') {
@@ -140,13 +147,6 @@ class AccountController {
             error: 'You cannot access someone\'s account details',
           });
         }
-      }
-
-      if (result.rowCount < 1) {
-        return res.status(404).json({
-          status: 404,
-          error: 'Account not found',
-        });
       }
 
       return res.status(200).json({

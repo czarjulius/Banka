@@ -150,7 +150,6 @@ class TransactionController {
       
       const result = await Transaction.selectTransactionById(req.params.id);
 
-      const { id, type } = req.authUser;
 
       if (!result) {
         return res.status(404).json({
@@ -158,6 +157,8 @@ class TransactionController {
           error: `Transaction with ID ${req.params.id} is not found`,
         });
       }
+      
+      const { id, type } = req.authUser;
 
       if (type === 'user') {
         if (result.owner !== id) {
