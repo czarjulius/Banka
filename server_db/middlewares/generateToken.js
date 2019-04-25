@@ -6,11 +6,11 @@ import jwt from 'jsonwebtoken';
    * @param {string} res
    * @method generateToken
    */
-const generateToken = (id, email, isAdmin, type) => {
+const generateToken = (id, email, isadmin, type) => {
   const token = jwt.sign({
     id,
     email,
-    isAdmin,
+    isadmin,
     type,
   },
   process.env.SECRET_KEY, {

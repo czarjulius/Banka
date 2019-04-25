@@ -41,7 +41,7 @@ To run tests for the server side
 - Run `npm run test` to run app tests
 - Run `npm run coverage` to run test coverage on the app
 
-# API
+# API Endpoints
 
 - Heroku - https://julius-banka.herokuapp.com/
 
@@ -49,12 +49,18 @@ To run tests for the server side
  | ------ | ----------- | -------------- | ---- |
  | POST |Create new user| /api/v1/auth/signup| * |
  | POST |Sign in a user | /api/v1/auth/signin| * |
- | POST |Create new account  | /api/v1/accounts| user |
+ | POST |Create new account  | /api/v1/accounts| User |
  | PATCH | Update account status  | /api/v1/account/:accountNumber | Admin |
  | DELETE | Delete existing account  | /api/v1/accounts/:accountNumber | Admin |
- | POST | Debit a user account | /api/v1/transactions/:accountNumber/debit | staff |
- | POST | Credit a user account | /api/v1/transactions/:accountNumber/credit | staff |
-
+ | POST | Debit a user account | /api/v1/transactions/:accountNumber/debit | Staff |
+ | POST | Credit a user account | /api/v1/transactions/:accountNumber/credit | Staff |
+ | GET |View an account’s transaction history​| /api/v1/accounts/:accountNumber/transactions| User |
+ | GET |View a specific transaction​ | /api/v1/transactions/:id| User |
+ | GET |View all accounts owned by a specific user| /api/v1/user/:email/accounts| Admin |
+ | GET |View a specific account’s details​   | /api/v1/accounts/:accountNumber| User |
+ | GET |View a list of all bank accounts​| /api/v1/accounts | Admin, Staff |
+ | GET |View a list of all active bank accounts| /api/v1/accounts?status=active|Admin |
+ | GET |View a list of all dormant bank accounts| /api/v1/accounts?status=dormant | Admin |
 
 ## Built With
 

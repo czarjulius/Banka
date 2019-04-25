@@ -24,6 +24,7 @@ class AccountController {
   static async postAccount(req, res) {
     try {
       const { type, amount } = req.body;
+      
       const {
         id: userId, firstname, lastname, email,
       } = req.authUser;
@@ -115,7 +116,7 @@ class AccountController {
     }
   }
 
-   /**
+  /**
    * @description Get account detail by account number
    * @static
    * @param {integer} req - request
@@ -156,8 +157,9 @@ class AccountController {
   static async getAccountByEmail(req, res) {
     try {
       const { email } = req.params;
-
+      
       const userEmail = await db.query(userDetails, [email]);
+      
       if (!userEmail.rows.length) {
         return res.status(400).json({
           status: 400,
@@ -165,7 +167,7 @@ class AccountController {
         });
       }
       const result = await db.query(getAccountWithEmail, [email]);
-      
+        
       if (result.rowCount < 1) {
         return res.status(404).json({
           status: 400,

@@ -182,4 +182,3 @@ describe('/POST Login user', () => {
       });
   });
 });
-

@@ -17,7 +17,7 @@ class AuthenticationHelper {
         id, 
         firstname, 
         lastname, 
-        email, isAdmin, 
+        email, isadmin, 
         registeredOn, 
         type 
         FROM users WHERE id = $1`;

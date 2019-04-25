@@ -1,22 +1,19 @@
 import express from 'express';
-import Role from '../middlewares/authorization';
-import auth from '../middlewares/authentication';
-import ValidateAmount from '../middlewares/validateAmount';
-import validateAccountNumber from '../middlewares/validateAccountNumber';
+import authenticate from '../middlewares/authentication';
 import transactionController from '../controllers/transactionController';
-import ValidateId from '../middlewares/validateId';
+import Validate from '../middlewares/Validate';
 
 const router = express.Router();
 
-router.post('/transactions/:accountNumber/credit', auth, validateAccountNumber, ValidateAmount.validateAmt,
-  Role.isStaff, transactionController.creditUser);
+router.post('/transactions/:accountNumber/credit', authenticate, Validate.validateAccountNumber,
+  Validate.validateAmount, Validate.isStaff, transactionController.creditUser);
 
-router.post('/transactions/:accountNumber/debit', auth, validateAccountNumber, ValidateAmount.validateAmt,
-  Role.isStaff, transactionController.debitUser);
+router.post('/transactions/:accountNumber/debit', authenticate, Validate.validateAccountNumber,
+  Validate.validateAmount, Validate.isStaff, transactionController.debitUser);
 
-router.get('/accounts/:accountNumber/transactions', auth, validateAccountNumber,
+router.get('/accounts/:accountNumber/transactions', authenticate, Validate.validateAccountNumber,
   transactionController.getSpecificAccountTransactions);
 
-router.get('/transactions/:id', auth, ValidateId, transactionController.getTransactionById);
+router.get('/transactions/:id', authenticate, Validate.validateId, transactionController.getTransactionById);
 
 export default router;
