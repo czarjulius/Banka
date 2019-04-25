@@ -31,7 +31,7 @@ class TransactionEmail {
     const msg = {
       to: email,
       from: 'techranchsolutions@gmail.com',
-      subject: 'Sending with SendGrid is Fun',
+      subject: 'Transaction Alert',
       templateId: 'd-2e7e1378de4b48548880f9e177ab6c96',
       dynamic_template_data: {
         subject: `Banka ${type} Alert`,
