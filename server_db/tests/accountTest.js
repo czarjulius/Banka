@@ -80,16 +80,16 @@ describe('tests for Account controller', () => {
           done();
         });
     });
-    it('should fail to create a new account if amount  is not provided', (done) => {
+    it('should fail to create a new account type is not correct', (done) => {
       const account = {
-        type: 'current',
+        type: 'currentee',
       };
       api.post('/api/v1/accounts')
         .set('x-access-token', token)
         .send(account)
         .end((err, res) => {
           expect(res.status).to.equal(400);
-          expect(res.body.error).to.equal('Amount is required');
+          expect(res.body.error).to.equal('Account type must be savings or current');
           done();
         });
     });
@@ -201,7 +201,6 @@ describe('tests for Account controller', () => {
     });
   });
 
-  
   describe('/DELETE  account by account Number', () => {
     it('should delete a specific account detail', (done) => {
       api.delete(`/api/v1/accounts/${accountNumber}`)

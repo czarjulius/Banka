@@ -23,8 +23,8 @@ class AccountController {
    */
   static async postAccount(req, res) {
     try {
-      const { type, amount } = req.body;
-      
+      const { type } = req.body;
+      const amount = 0.00;
       const {
         id: userId, firstname, lastname, email,
       } = req.authUser;
@@ -34,6 +34,7 @@ class AccountController {
       const result = await db.query(createAccount, values);
       return res.status(201).json({
         status: 201,
+        message: 'Account successfully created',
         data: {
           id: result.rows[0].id,
           accountNumber: result.rows[0].accountnumber,
@@ -74,6 +75,7 @@ class AccountController {
     try {
       res.status(200).json({
         status: 200,
+        message: 'Status updated successfully',
         data: {
           accountNumber,
           state: result.rows[0].status,
@@ -128,6 +130,18 @@ class AccountController {
       const { accountNumber } = req.params;
 
       const result = await db.query(getAccountNumber, [accountNumber]);
+
+      const { id, type } = req.authUser;
+
+      if (type === 'user') {
+        if (result.rows[0].id !== id) {
+          return res.status(400).json({
+            status: 400,
+            error: 'You cannot access someone\'s account details',
+          });
+        }
+      }
+
       if (result.rowCount < 1) {
         return res.status(404).json({
           status: 404,
@@ -137,6 +151,7 @@ class AccountController {
 
       return res.status(200).json({
         status: 200,
+        message: 'Account fetched successfully',
         data: result.rows[0],
       });
     } catch (err) {
@@ -159,6 +174,8 @@ class AccountController {
       const { email } = req.params;
       
       const userEmail = await db.query(userDetails, [email]);
+
+      const { id, type } = req.authUser;
       
       if (!userEmail.rows.length) {
         return res.status(400).json({
@@ -174,7 +191,17 @@ class AccountController {
           error: 'This user is yet to create an account',
         });
       }
+
+      if (type === 'user') {
+        if (userEmail.rows[0].id !== id) {
+          return res.status(400).json({
+            status: 400,
+            error: 'You cannot access someone\'s account details',
+          });
+        }
+      }
       return res.status(200).json({
+        message: 'Accounts fetched successfully',
         status: 200,
         data: result.rows,
       });
@@ -215,6 +242,7 @@ class AccountController {
         }
         return res.status(200).json({
           status: 200,
+          message: 'All accounts successfully fetched',
           data: result.rows,
         });
       }

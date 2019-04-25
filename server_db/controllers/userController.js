@@ -38,6 +38,7 @@ class User {
       const token = generateToken(result.rows[0].id, result.rows[0].email, result.rows[0].isadmin, result.rows[0].type);
       return res.header('x-access-token', token).status(201).json({
         status: 201,
+        message: 'Registration successful',
         data: {
           token,
           id: result.rows[0].id,
@@ -90,6 +91,7 @@ class User {
       const token = generateToken(rows.rows[0].id, rows.rows[0].email, rows.rows[0].isadmin, rows.rows[0].type);
       return res.header('x-access-token', token).status(200).json({
         status: 200,
+        message: 'Login successful',
         data: {
           token,
           id,

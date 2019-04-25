@@ -40,6 +40,7 @@ class TransactionController {
       
       return res.status(200).json({
         status: 200,
+        message: 'Account credited successfully',
         data: transaction.rows,
       });
     } catch (err) {
@@ -86,6 +87,7 @@ class TransactionController {
       }
       return res.status(200).json({
         status: 200,
+        message: 'Account debited successfully',
         data: transaction.rows,
       });
     } catch (err) {
@@ -112,9 +114,20 @@ class TransactionController {
           error: 'No Transaction created on this account yet',
         });
       }
+      const { id, type } = req.authUser;
+
+      if (type === 'user') {
+        if (result.rows[0].owner !== id) {
+          return res.status(400).json({
+            status: 400,
+            error: 'You cannot access someone\'s account details',
+          });
+        }
+      }
 
       return res.status(200).json({
         status: 200,
+        message: 'Transaction details fetched successfully',
         data: result.rows,
       });
     } catch (err) {
@@ -134,7 +147,10 @@ class TransactionController {
    */
   static async getTransactionById(req, res) {
     try {
+      
       const result = await Transaction.selectTransactionById(req.params.id);
+
+      const { id, type } = req.authUser;
 
       if (!result) {
         return res.status(404).json({
@@ -142,8 +158,19 @@ class TransactionController {
           error: `Transaction with ID ${req.params.id} is not found`,
         });
       }
+
+      if (type === 'user') {
+        if (result.owner !== id) {
+          return res.status(400).json({
+            status: 400,
+            error: 'You cannot access someone\'s account details',
+          });
+        }
+      }
+      
       return res.status(200).json({
         status: 200,
+        message: 'Transaction details fetched successfully',
         data: result,
       });
     } catch (err) {

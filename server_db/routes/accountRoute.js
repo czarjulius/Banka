@@ -5,7 +5,7 @@ import Validate from '../middlewares/Validate';
 
 const router = express.Router();
 
-router.post('/accounts', authenticate, Validate.validateAccountType, Validate.validateAmount, accountController.postAccount);
+router.post('/accounts', authenticate, Validate.validateAccountType, accountController.postAccount);
 
 router.patch('/account/:accountNumber', authenticate, Validate.admin, Validate.validateAccountNumber, Validate.validateAccountStatus,
   accountController.editAccountStatus);

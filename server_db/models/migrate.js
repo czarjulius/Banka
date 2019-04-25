@@ -25,7 +25,7 @@ const tableQuery = async () => {
       type VARCHAR(15) NOT NULL,
       status VARCHAR(15) DEFAULT 'active',
       owner INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-      balance float DEFAULT 0.00,
+      balance DECIMAL(18,2) DEFAULT 0.00,
       createdOn DATE DEFAULT CURRENT_TIMESTAMP)`);
 
     const transactionTable = await pool.query(`CREATE TABLE IF NOT EXISTS transactions(
@@ -34,8 +34,8 @@ const tableQuery = async () => {
       amount float NOT NULL,
       cashier INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
       type VARCHAR(15) NOT NULL,
-      oldbalance float DEFAULT 0.00,
-      newbalance float DEFAULT 0.00,
+      oldbalance DECIMAL(18,2) DEFAULT 0.00,
+      newbalance DECIMAL(18,2) DEFAULT 0.00,
       createdOn DATE DEFAULT CURRENT_TIMESTAMP)`);
 
     const adminValues = ['admin', 'admin', 'admin@gmail.com', bcrypt.hashSync('admin123', 10), '08135778669', 'staff', 'true'];

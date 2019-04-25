@@ -20,7 +20,7 @@ async function createAdmin() {
     VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING email, firstname, lastname, id`;
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash('123def', salt);
-  const values = ['Julius', 'Ngwu', 'julius33@gmail.com', hashedPassword, true, '08109983465', 'staff'];
+  const values = ['Julius', 'Ngwu', 'julius33@gmail.com', hashedPassword, false, '08109983465', 'staff'];
   return db.query(query, values);
 }
 
@@ -68,7 +68,7 @@ describe('tests for Transaction controller', () => {
   });
 
   describe('/POST credit account', () => {
-    it('should credit an account', (done) => {
+    it('should  credit an account', (done) => {
       const transact = {
         amount: 100,
       };
@@ -99,7 +99,7 @@ describe('tests for Transaction controller', () => {
   });
 
   describe('/POST debit Transaction', () => {
-    it('should debit an account', (done) => {
+    it('should  debit an account', (done) => {
       const transact = {
         amount: 100,
       };

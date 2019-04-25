@@ -219,9 +219,9 @@ class Validate {
 
   /* When only staff has the right to carryout the function */
   static isStaff(req, res, next) {
-    const { type } = req.authUser;
+    const { type, isadmin } = req.authUser;
 
-    if (type !== 'staff') {
+    if (type !== 'staff' || isadmin === true) {
       return res.status(403).json({
         status: 403,
         error: 'Access denied! You are not a Staff',

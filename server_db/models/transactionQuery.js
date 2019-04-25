@@ -89,16 +89,19 @@ class Transact {
 
   static async specificAccountTransactions(accountnumber) {
     const result = await db.query(
-      `SELECT * FROM transactions WHERE accountnumber = ${accountnumber}`,
+      `Select T.id, T.createdon, T.type, T.accountnumber, T.amount, T.oldBalance, T.newBalance, a.owner
+      from transactions as T inner join accounts a on a.accountnumber = T.accountnumber 
+      where T.accountnumber = ${accountnumber}`,
     );
     return result;
   }
 
   static async selectTransactionById(id) {
     const result = await db.query(
-      `Select id, createdon, type, accountnumber, amount, oldBalance, newBalance 
-      from transactions where id = ${id} `,
-    );
+      `Select T.id, T.createdon, T.type, T.accountnumber, T.amount, T.oldBalance, T.newBalance, a.owner
+      from transactions as T inner join accounts a on a.accountnumber = T.accountnumber where T.id = ${id} `,
+
+    );    
     return result.rows[0];
   }
 }
