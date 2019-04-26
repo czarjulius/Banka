@@ -2,11 +2,13 @@ import '@babel/polyfill';
 import express from 'express';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
+import cors from 'cors';
 import router from './server_db/routes/index';
 import swaggerdoc from './swagger';
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());

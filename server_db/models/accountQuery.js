@@ -8,12 +8,12 @@ const updateAccountStatus = 'UPDATE accounts SET status = $1 WHERE accountNumber
 
 const deleteAccount = 'DELETE from accounts where accountNumber = $1';
 
-const getAccountNumber = `select A.createdon, A.accountnumber, U.email, A.type, A.status, A.balance
+const getAccountNumber = `select A.createdon, A.accountnumber, U.email, U.id, A.type, A.status, A.balance
                           from accounts A 
                           inner join users U on A.owner = U.id where A.accountnumber = $1`;
 
 const getAccountWithEmail = `select A.createdon, A.accountnumber, A.type, 
-                            A.status, A.balance, U.email 
+                            A.status, A.balance, U.email, U.id 
                             from accounts A inner join users U on A.owner = U.id where U.email = $1`;
 
 const allAccountsByStatus = `select A.createdon, A.accountnumber, A.type, A.status, 
