@@ -43,6 +43,9 @@ const tableQuery = async () => {
 
     const staffValues = ['staff', 'staff', 'staff@gmail.com', bcrypt.hashSync('staff123', 10), '08135778669', 'staff', 'false'];
     const staff = await pool.query('INSERT into users(firstName, lastName, email, password, phoneNumber, type, isAdmin)VALUES($1,$2,$3,$4,$5,$6,$7)', staffValues);
+  
+    console.log('All Tables Created Successfully');
+    
   } catch (err) {
     console.log(err.stack);
     return err.stack;

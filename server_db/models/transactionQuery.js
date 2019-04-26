@@ -100,8 +100,7 @@ class Transact {
     const result = await db.query(
       `Select T.id, T.createdon, T.type, T.accountnumber, T.amount, T.oldBalance, T.newBalance, a.owner
       from transactions as T inner join accounts a on a.accountnumber = T.accountnumber where T.id = ${id} `,
-
-    );    
+    );
     return result.rows[0];
   }
 }
