@@ -19,7 +19,7 @@ async function createAdmin() {
   const query = `INSERT INTO users(firstName, lastname, email, password, isAdmin, phonenumber, type)
     VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING email, firstname, lastname, id`;
   const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash('123def', salt);
+  const hashedPassword = await bcrypt.hash('123Def@1', salt);
   const values = ['Julius', 'Ngwu', 'julius@gmail.com', hashedPassword, true, '08109983465', 'staff'];
   return db.query(query, values);
 }
@@ -31,7 +31,7 @@ describe('tests for Account controller', () => {
   it('should get login and return admin token', (done) => {
     const user = {
       email: 'julius@gmail.com',
-      password: '123def',
+      password: '123Def@1',
     };
     api.post('/api/v1/auth/signin')
       .send(user)
@@ -93,7 +93,7 @@ describe('tests for Account controller', () => {
           done();
         });
     });
-    
+
     it('should fail to create a new account if account type must be a type of savings or current', (done) => {
       const account = {
         amount: 100,

@@ -63,11 +63,18 @@ class Validate {
         error: 'Account Number must be a whole integer',
       });
     }
-
+    
     if (accountNumber.length !== 10) {
       return res.status(400).json({
         status: 400,
         error: 'Account Number must be 10 digits',
+      });
+    }
+
+    if (!accountNumber.match(/^[^+]+$/)) {
+      return res.status(400).json({
+        status: 400,
+        error: 'Account number cannot start with a plus sign',
       });
     }
     next();
@@ -93,6 +100,13 @@ class Validate {
       return res.status(400).json({
         status: 400,
         error: 'ID must be a positive integer ',
+      });
+    }
+
+    if (!id.match(/^[^+]+$/)) {
+      return res.status(400).json({
+        status: 400,
+        error: 'ID  cannot start with a plus sign',
       });
     }
     next();
@@ -252,7 +266,7 @@ class Validate {
         error: 'Firstname must be letters',
       });
     }
-    if (firstName.length < 2) {
+    if (firstName.length < 3) {
       return res.status(400).json({
         status: 400,
         error: 'first Name must be atleast 3 alphabets',
@@ -276,7 +290,7 @@ class Validate {
         error: 'Lastname must be letters',
       });
     }
-    if (lastName.length < 2) {
+    if (lastName.length < 3) {
       return res.status(400).json({
         status: 400,
         error: 'last Name must be atleast 3 alphabets',
@@ -286,6 +300,13 @@ class Validate {
       return res.status(400).json({
         status: 400,
         error: 'password is required',
+      });
+    }
+
+    if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{6,15}$/)) {
+      return res.status(400).json({
+        status: 400,
+        error: 'Password must contain atleast one special character, number, uppercase and lowercase letter, min of 6 and max of 15 characters long',
       });
     }
 

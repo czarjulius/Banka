@@ -50,7 +50,7 @@ class Transact {
       );
       const oldbalance = account.rows[0].balance;
       const newbalance = parseFloat(oldbalance) - parseFloat(amount);
-      
+
       if (oldbalance < amount) {
         return res.status(400).json({
           status: 400,
