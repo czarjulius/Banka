@@ -103,6 +103,7 @@ class Transact {
     );
     return result.rows[0];
   }
+
 }
 
 export default Transact;

@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import db from '../models/db';
 import generateToken from '../middlewares/generateToken';
-import { staffSignup, userDetails } from '../models/adminQuery';
+import { staffSignup, userDetails, adminGetAllUsers } from '../models/adminQuery';
 
 dotenv.config();
 /**
@@ -15,7 +15,7 @@ class Admin {
    * @static
    * @param {object} req - The form data to be inputted
    * @param {object} res - The status code and data including login token..
-   * @method postUser
+   * @method postAdmin
    */
   static async staffSignup(req, res) {
     try {
@@ -50,6 +50,23 @@ class Admin {
           isAdmin: result.rows[0].isadmin,
           registeredOn: result.rows[0].registeredon,
         },
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: 500,
+        error: err.message,
+      });
+    }
+  }
+
+  static async getAllUsers(req, res) {
+    try {
+      const result = await db.query(adminGetAllUsers);
+
+      return res.status(200).json({
+        status: 200,
+        message: 'All users successfully fetched',
+        data: result.rows,
       });
     } catch (err) {
       return res.status(500).json({
