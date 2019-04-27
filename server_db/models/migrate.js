@@ -43,14 +43,8 @@ const tableQuery = async () => {
 
     const staffValues = ['staff', 'staff', 'staff@gmail.com', bcrypt.hashSync('staff123', 10), '08135778669', 'staff', 'false'];
     const staff = await pool.query('INSERT into users(firstName, lastName, email, password, phoneNumber, type, isAdmin)VALUES($1,$2,$3,$4,$5,$6,$7)', staffValues);
-<<<<<<< HEAD
-  
-    console.log('All Tables Created Successfully');
-    
-=======
 
     console.log('All Tables Created Successfully');
->>>>>>> chore(protect-user-details): implement protect user informationensure that every response has a messageensure that user can only view their information[Delivers #165596240]
   } catch (err) {
     console.log(err.stack);
     return err.stack;
