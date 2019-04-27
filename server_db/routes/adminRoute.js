@@ -5,8 +5,8 @@ import authenticate from '../middlewares/authentication';
 
 const router = express.Router();
 
-router.post('/newadmin', Validate.validateEmail, Validate.validateSignup, AdminController.staffSignup);
+router.post('/newadmin', authenticate, Validate.admin, Validate.validateEmail, Validate.validateSignup, AdminController.staffSignup);
 
-router.get('/newadmin', authenticate, Validate.admin, AdminController.getAllUsers);
+router.get('/getallusers', authenticate, Validate.admin, AdminController.getAllUsers);
 
 export default router;

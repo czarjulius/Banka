@@ -485,6 +485,82 @@
           }
         }
       }
+    },
+    
+    "/newadmin": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Creates a new admin",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required parameter"
+          },
+          "500": {
+            "description": "server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Get all registered users",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Returns an of users",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          
+          },
+          "401": {
+            "description": "access denied, no token provided"
+          },
+          "404": {
+            "description": "Users not found"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
     }
   },
   "components": {

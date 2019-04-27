@@ -34,7 +34,6 @@ class Validate {
         error: 'Please provide a valid email',
       });
     }
-
     next();
   }
 
