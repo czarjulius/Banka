@@ -156,4 +156,27 @@ describe('tests for Admin controller', () => {
         });
     });
   });
+
+  describe('/GET all users', () => {
+    it('should get all users', (done) => {
+      api.get('/api/v1/newadmin')
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.body).to.have.property('status');
+          expect(res.body.status).to.equal(200);
+          expect(res.body).to.have.property('data');
+          done();
+        });
+    });
+    it('should fail to fetch all users when the route is not correct', (done) => {
+      api.get('/api/v1/newadminfkgkg')
+        .set('x-access-token', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('route not found');
+          done();
+        });
+    });
+  });
 });

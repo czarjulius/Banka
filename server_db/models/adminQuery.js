@@ -4,4 +4,6 @@ RETURNING id, firstName, lastName, email, phoneNumber, type, isAdmin, registered
 
 const userDetails = 'SELECT * FROM users WHERE email = $1';
 
-export { staffSignup, userDetails };
+const adminGetAllUsers = 'SELECT firstName, lastName, email, phoneNumber, type, isAdmin, registeredOn FROM users';
+
+export { staffSignup, userDetails, adminGetAllUsers };
