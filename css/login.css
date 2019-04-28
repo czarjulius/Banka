@@ -11,10 +11,10 @@
   display: none;
   margin-left: 30px;
 }
-#registerSuccess {
+#loginSuccess {
   color: green;
 }
-.alert-class, #registerMessage {
+.alert-class, #loginMessage {
   color: red;
 }
 .register-form{
