@@ -76,7 +76,7 @@ const validateSignup = (info) =>{
   }
   if (!phoneNumber) {
     
-    error.password = 'phoneNumber is required';
+    error.phoneNumber = 'phoneNumber is required';
   }
 
   if (phoneNumber.toString().replace(/\s/g, '').length === 0) {
@@ -121,8 +121,8 @@ const getfetch = (content) => {
         roller.innerHTML = response.message;
         setTimeout(() => {
           document.getElementById('spinner').style.display = 'block';
-          window.location.href = 'https://czarjulius.github.io/Banka/user_acc_profile.html';
           // window.location.href = 'https://czarjulius.github.io/Banka/user_acc_profile.html';
+          window.location.href = 'https://czarjulius.github.io/Banka/user_acc_profile.html';
         }, 3000);
       }
     });
