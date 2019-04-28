@@ -18,7 +18,11 @@ width: 100%;
 position: fixed;
 top: 0;
 }
-
+#spinner{
+  width: 200px;
+  height: 50px;
+  display: none;
+}
 .navbar {
 font-size: 18px;
 background-color: rgb(3, 26, 54);
@@ -82,7 +86,7 @@ input[type="text"],input[type="password"],input[type="email"] {
   padding:5px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  color:rgb(245, 237, 237);
+  color:rgb(29, 26, 26);
   font-size:1em;
   height:32px;
   outline:none;

@@ -5,7 +5,12 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
-
+#registerSuccess {
+  color: green;
+}
+.alert-class, #registerMessage {
+  color: red;
+}
 .register-form{
   margin: auto;
   color: #000;
