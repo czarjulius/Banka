@@ -12,8 +12,8 @@ const firstNameError = document.getElementById('firstnameError');
 const lastNameError = document.getElementById('lastnameError');
 const emailError = document.getElementById('emailError');
 const passwordError = document.getElementById('passwordError');
-const url = 'https://julius-banka.herokuapp.com/api/v1/auth/signup';
-// const url = 'http://127.0.0.1:8080/api/v1/auth/signup';
+// const url = 'https://julius-banka.herokuapp.com/api/v1/auth/signup';
+const url = 'http://127.0.0.1:8080/api/v1/auth/signup';
 
 
 const validateSignup = (info) =>{
@@ -76,7 +76,7 @@ const validateSignup = (info) =>{
   }
   if (!phoneNumber) {
     
-    error.password = 'phoneNumber is required';
+    error.phoneNumber = 'phoneNumber is required';
   }
 
   if (phoneNumber.toString().replace(/\s/g, '').length === 0) {
@@ -121,8 +121,8 @@ const getfetch = (content) => {
         roller.innerHTML = response.message;
         setTimeout(() => {
           document.getElementById('spinner').style.display = 'block';
-          window.location.href = 'https://czarjulius.github.io/Banka/user_acc_profile.html';
           // window.location.href = 'https://czarjulius.github.io/Banka/user_acc_profile.html';
+          window.location.href = 'https://czarjulius.github.io/Banka/user_acc_profile.html';
         }, 3000);
       }
     });
