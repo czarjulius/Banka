@@ -6,8 +6,8 @@ import { staffSignup, userDetails, adminGetAllUsers } from '../models/adminQuery
 
 dotenv.config();
 /**
- * @description Defines the actions for User endpoints
- * @class AccountController
+ * @description Defines the actions for Admin endpoints
+ * @class Admin
  */
 class Admin {
   /**
@@ -59,6 +59,12 @@ class Admin {
     }
   }
 
+  /**
+   * @description Get all users record
+   * @static
+   * @param {Array} res - The list of all the users.
+   * @method getAllUsers
+   */
   static async getAllUsers(req, res) {
     try {
       const result = await db.query(adminGetAllUsers);

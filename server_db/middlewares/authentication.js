@@ -12,6 +12,7 @@ dotenv.config();
     *
    */
 const authenticate = async (req, res, next) => {
+  
   const token = req.header('x-access-token') || req.body.token || req.query.token;
   if (!token) {
     return res.status(401).json({

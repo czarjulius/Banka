@@ -159,7 +159,7 @@ describe('tests for Admin controller', () => {
 
   describe('/GET all users', () => {
     it('should get all users', (done) => {
-      api.get('/api/v1/newadmin')
+      api.get('/api/v1/getallusers')
         .set('x-access-token', token)
         .end((err, res) => {
           expect(res.status).to.equal(200);
