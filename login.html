@@ -25,15 +25,16 @@
           </li>
         </ul>
     </nav>
-
+ 
     <div class="register-container">
         
       <div class="register-form">
-        <form action="./user_acc_profile.html">
+        <form>
             <div class="form-header">
                 <h4>Login</h4>
-                <p id="registerMessage"></p>
-                <p id="registerSuccess"></p>
+                <p id="loginMessage"></p>
+                <p id="loginSuccess"></p>
+                <img src="./image/spinner.gif" id="spinner">
             </div>
           <div class="input"> 
             <label for="email"> Email </label>
@@ -46,9 +47,7 @@
             <p id="passwordError" class="alert-class"></p>
           </div>
             <p class="sign-up"> 
-              <a href="#">
-                <input type="submit" value="Login" class="btn">
-              </a>
+                <input type="button" id="loginUser" onclick="login()" value="Login" class="btn">
               <a href="reset_password.html" class="reset-pass">Forgot Password?</a>
             </p>
         </form>
@@ -63,5 +62,7 @@
       <p>My Banka, Copyright &copy; 2019</p>
   </footer> 
   <script src="./js/app.js"></script>
+  <script src="./js/login.js"></script>
+
 </body>
 </html>
