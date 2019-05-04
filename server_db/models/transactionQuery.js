@@ -49,7 +49,7 @@ class Transact {
         `SELECT * FROM accounts WHERE accountnumber = ${accountnumber}`,
       );
       const oldbalance = account.rows[0].balance;
-      const newbalance = parseFloat(oldbalance) - parseFloat(amount);
+      const newbalance = oldbalance - amount;
 
       if (oldbalance < amount) {
         return res.status(400).json({
@@ -103,7 +103,6 @@ class Transact {
     );
     return result.rows[0];
   }
-
 }
 
 export default Transact;
