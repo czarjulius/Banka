@@ -215,6 +215,13 @@ class Validate {
         error: 'Amount must be a number',
       });
     }
+
+    if (amount <= 0) {
+      return res.status(400).json({
+        status: 400,
+        error: 'Amount must be a value greater than zero',
+      });
+    }
     next();
   }
 
