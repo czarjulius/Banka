@@ -12,8 +12,8 @@ const firstNameError = document.getElementById('firstnameError');
 const lastNameError = document.getElementById('lastnameError');
 const emailError = document.getElementById('emailError');
 const passwordError = document.getElementById('passwordError');
-// const url = 'https://julius-banka.herokuapp.com/api/v1/auth/signup';
-const url = 'http://127.0.0.1:8080/api/v1/auth/signup';
+const url = 'https://julius-banka.herokuapp.com/api/v1/auth/signup';
+// const url = 'http://127.0.0.1:8080/api/v1/auth/signup';
 
 
 const validateSignup = (info) =>{

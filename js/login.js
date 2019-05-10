@@ -14,7 +14,6 @@ const url = 'https://julius-banka.herokuapp.com/api/v1/auth/signin';
 const validateSignin = (info) =>{
   const { password, email } = info;
   const error = {};
-  const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (!email) {
       error.email = 'email is required';
   }
